@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated": "2026-02-23T18:47:17.616990",
+    "generated": "2026-02-23T20:48:34.733246",
     "total": 46,
     "available": 24,
     "unavailable": 0,
@@ -1976,114 +1976,114 @@
       "url": "https://www.zocdoc.com/doctor/sagar-shah-dpm-673125"
     },
     {
-      "error": "No Redux state found",
-      "name": "Ryan Haaksma",
-      "url": "https://www.zocdoc.com/doctor/ryan-haaksma-dpm-673141"
-    },
-    {
-      "error": "No Redux state found",
-      "name": "Roma Patel",
-      "url": "https://www.zocdoc.com/doctor/roma-patel-dpm-673136"
-    },
-    {
-      "error": "No Redux state found",
-      "name": "Raj Prabhakar",
-      "url": "https://www.zocdoc.com/doctor/raj-prabhakar-dpm-673138"
-    },
-    {
-      "error": "No Redux state found",
-      "name": "Phi Huynh",
-      "url": "https://www.zocdoc.com/doctor/phi-huynh-dpm-673152"
-    },
-    {
-      "error": "No Redux state found",
-      "name": "Patrick Derby",
-      "url": "https://www.zocdoc.com/doctor/patrick-derby-dpm-673140"
-    },
-    {
-      "error": "No Redux state found",
-      "name": "Nida Nisar",
-      "url": "https://www.zocdoc.com/doctor/nida-nisar-dpm-673147"
-    },
-    {
-      "error": "No Redux state found",
-      "name": "Nathalia Esmeral",
-      "url": "https://www.zocdoc.com/doctor/nathalia-esmeral-dpm-673111"
-    },
-    {
-      "error": "No Redux state found",
-      "name": "Michael Zuri",
-      "url": "https://www.zocdoc.com/doctor/michael-zuri-dpm-673134"
-    },
-    {
-      "error": "No Redux state found",
-      "name": "Melissa Prutch",
-      "url": "https://www.zocdoc.com/doctor/melissa-prutch-dpm-673119"
-    },
-    {
-      "error": "No Redux state found",
-      "name": "Kyle Haverstrom",
-      "url": "https://www.zocdoc.com/doctor/kyle-haverstrom-dpm-673139"
-    },
-    {
-      "error": "No Redux state found",
+      "error": "No Redux state found - possible CAPTCHA block",
       "name": "John Hurchik",
       "url": "https://www.zocdoc.com/doctor/john-hurchik-dpm-673121"
     },
     {
-      "error": "No Redux state found",
-      "name": "James Cottom",
-      "url": "https://www.zocdoc.com/doctor/james-cottom-dpm-673128"
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Melissa Prutch",
+      "url": "https://www.zocdoc.com/doctor/melissa-prutch-dpm-673119"
     },
     {
-      "error": "No Redux state found",
-      "name": "Jalpen Patel",
-      "url": "https://www.zocdoc.com/doctor/jalpen-patel-dpm-673116"
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Michael Zuri",
+      "url": "https://www.zocdoc.com/doctor/michael-zuri-dpm-673134"
     },
     {
-      "error": "No Redux state found",
-      "name": "Jacob Ivey",
-      "url": "https://www.zocdoc.com/doctor/jacob-ivey-dpm-673133"
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Nathalia Esmeral",
+      "url": "https://www.zocdoc.com/doctor/nathalia-esmeral-dpm-673111"
     },
     {
-      "error": "No Redux state found",
+      "error": "No Redux state found - possible CAPTCHA block",
       "name": "Jacob Huffman",
       "url": "https://www.zocdoc.com/doctor/jacob-huffman-dpm-673122"
     },
     {
-      "error": "No Redux state found",
-      "name": "Heather Wilson",
-      "url": "https://www.zocdoc.com/doctor/heather-wilson-dpm-673113"
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Bruce Kroeker",
+      "url": "https://www.zocdoc.com/doctor/bruce-kroeker-dpm-673148"
     },
     {
-      "error": "No Redux state found",
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Kyle Haverstrom",
+      "url": "https://www.zocdoc.com/doctor/kyle-haverstrom-dpm-673139"
+    },
+    {
+      "error": "No Redux state found - possible CAPTCHA block",
       "name": "Elaine Felix",
       "url": "https://www.zocdoc.com/doctor/elaine-felix-dpm-673115"
     },
     {
-      "error": "No Redux state found",
-      "name": "Donald Adamov",
-      "url": "https://www.zocdoc.com/doctor/donald-adamov-dpm-673127"
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "James Cottom",
+      "url": "https://www.zocdoc.com/doctor/james-cottom-dpm-673128"
     },
     {
-      "error": "No Redux state found",
+      "error": "No Redux state found - possible CAPTCHA block",
       "name": "Divyesh Mehta",
       "url": "https://www.zocdoc.com/doctor/divyesh-mehta-dpm-673142"
     },
     {
-      "error": "No Redux state found",
-      "name": "Dean Sorrento",
-      "url": "https://www.zocdoc.com/doctor/dean-sorrento-dpm-703476"
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Roma Patel",
+      "url": "https://www.zocdoc.com/doctor/roma-patel-dpm-673136"
     },
     {
-      "error": "No Redux state found",
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Ryan Haaksma",
+      "url": "https://www.zocdoc.com/doctor/ryan-haaksma-dpm-673141"
+    },
+    {
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Heather Wilson",
+      "url": "https://www.zocdoc.com/doctor/heather-wilson-dpm-673113"
+    },
+    {
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Nida Nisar",
+      "url": "https://www.zocdoc.com/doctor/nida-nisar-dpm-673147"
+    },
+    {
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Jalpen Patel",
+      "url": "https://www.zocdoc.com/doctor/jalpen-patel-dpm-673116"
+    },
+    {
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Donald Adamov",
+      "url": "https://www.zocdoc.com/doctor/donald-adamov-dpm-673127"
+    },
+    {
+      "error": "No Redux state found - possible CAPTCHA block",
       "name": "Carolina Marquez",
       "url": "https://www.zocdoc.com/doctor/carolina-marquez-dpm-673143"
     },
     {
-      "error": "No Redux state found",
-      "name": "Bruce Kroeker",
-      "url": "https://www.zocdoc.com/doctor/bruce-kroeker-dpm-673148"
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Patrick Derby",
+      "url": "https://www.zocdoc.com/doctor/patrick-derby-dpm-673140"
+    },
+    {
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Jacob Ivey",
+      "url": "https://www.zocdoc.com/doctor/jacob-ivey-dpm-673133"
+    },
+    {
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Phi Huynh",
+      "url": "https://www.zocdoc.com/doctor/phi-huynh-dpm-673152"
+    },
+    {
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Raj Prabhakar",
+      "url": "https://www.zocdoc.com/doctor/raj-prabhakar-dpm-673138"
+    },
+    {
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Dean Sorrento",
+      "url": "https://www.zocdoc.com/doctor/dean-sorrento-dpm-703476"
     }
   ]
 }
