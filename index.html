@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evolve Health — Provider Availability</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f7f4;
+    --surface: #ffffff;
+    --surface-alt: #f0efec;
+    --border: #e4e2dd;
+    --text: #1a1a1a;
+    --text-secondary: #6b6966;
+    --text-tertiary: #9c9891;
+    --accent: #0f6b5e;
+    --accent-light: #e8f5f1;
+    --available: #0f6b5e;
+    --available-bg: #e8f5f1;
+    --unavailable: #c4432b;
+    --unavailable-bg: #fdf0ee;
+    --error: #96793e;
+    --error-bg: #faf5eb;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.92);
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: 'Fraunces', serif;
+  }
+
+  .logo-text {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .logo-text span {
+    color: var(--text-tertiary);
+    font-weight: 300;
+    margin-left: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+  }
+
+  .header-meta {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .refresh-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .refresh-btn:hover {
+    background: var(--surface-alt);
+    color: var(--text);
+  }
+
+  .refresh-btn.loading svg {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 40px 80px;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-tertiary);
+    margin-bottom: 8px;
+  }
+
+  .stat-value {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .stat-value.available { color: var(--available); }
+  .stat-value.unavailable { color: var(--unavailable); }
+  .stat-value.error { color: var(--error); }
+
+  .controls-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .filter-group {
+    display: flex;
+    gap: 8px;
+  }
+
+  .filter-btn {
+    padding: 7px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .filter-btn:hover { background: var(--surface-alt); }
+
+  .filter-btn.active {
+    background: var(--text);
+    color: white;
+    border-color: var(--text);
+  }
+
+  .search-input {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    width: 240px;
+    outline: none;
+    transition: border-color 0.2s;
+    background: var(--surface);
+  }
+
+  .search-input:focus { border-color: var(--accent); }
+
+  .table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead th {
+    padding: 14px 24px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+    background: var(--surface-alt);
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: #fafaf8; }
+
+  tbody td {
+    padding: 16px 24px;
+    font-size: 14px;
+  }
+
+  .doctor-name {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .doctor-name a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .doctor-name a:hover {
+    color: var(--accent);
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .status-badge.available {
+    background: var(--available-bg);
+    color: var(--available);
+  }
+
+  .status-badge.unavailable {
+    background: var(--unavailable-bg);
+    color: var(--unavailable);
+  }
+
+  .status-badge.error {
+    background: var(--error-bg);
+    color: var(--error);
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .slot-count {
+    font-variant-numeric: tabular-nums;
+    color: var(--text-secondary);
+  }
+
+  .next-date {
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+
+  .next-date strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 40px;
+    color: var(--text-tertiary);
+    gap: 16px;
+  }
+
+  .loading-state .spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 60px 40px;
+    color: var(--text-tertiary);
+    font-size: 14px;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+
+  @media (max-width: 768px) {
+    .header { padding: 0 20px; }
+    .main { padding: 20px; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .controls-bar { flex-direction: column; gap: 12px; align-items: stretch; }
+    .search-input { width: 100%; }
+    thead th, tbody td { padding: 12px 16px; }
+    .header-meta { display: none; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.4s ease forwards;
+  }
+
+  tbody tr { animation: fadeIn 0.3s ease forwards; opacity: 0; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-group">
+      <div class="logo-mark">E</div>
+      <div class="logo-text">Evolve Health <span>Provider Availability</span></div>
+    </div>
+    <div class="header-meta">
+      <div id="last-updated"></div>
+      <button class="refresh-btn" onclick="loadData()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Refresh
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+  <div class="stats-row fade-in">
+    <div class="stat-card">
+      <div class="stat-label">Total Providers</div>
+      <div class="stat-value" id="stat-total">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Available</div>
+      <div class="stat-value available" id="stat-available">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">No Availability</div>
+      <div class="stat-value unavailable" id="stat-unavailable">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Errors</div>
+      <div class="stat-value error" id="stat-errors">—</div>
+    </div>
+  </div>
+
+  <div class="controls-bar fade-in">
+    <div class="filter-group">
+      <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">All</button>
+      <button class="filter-btn" data-filter="available" onclick="setFilter('available', this)">Available</button>
+      <button class="filter-btn" data-filter="unavailable" onclick="setFilter('unavailable', this)">No Availability</button>
+      <button class="filter-btn" data-filter="error" onclick="setFilter('error', this)">Errors</button>
+    </div>
+    <input type="text" class="search-input" placeholder="Search providers..." oninput="searchDoctors(this.value)">
+  </div>
+
+  <div class="table-wrap fade-in">
+    <table>
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>Status</th>
+          <th>Open Slots</th>
+          <th>Next Available</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <tr><td colspan="4"><div class="loading-state"><div class="spinner"></div>Loading availability data...</div></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer" id="footer"></div>
+</main>
+
+<script>
+let allData = [];
+let currentFilter = 'all';
+let searchQuery = '';
+
+async function loadData() {
+  const btn = document.querySelector('.refresh-btn');
+  btn.classList.add('loading');
+
+  try {
+    const resp = await fetch('./data/availability.json?' + Date.now());
+    const json = await resp.json();
+
+    allData = json.doctors || json;
+    const meta = json.meta || {};
+
+    // Update stats
+    const available = allData.filter(d => d.has_availability).length;
+    const errors = allData.filter(d => d.error).length;
+    const unavailable = allData.length - available - errors;
+
+    document.getElementById('stat-total').textContent = allData.length;
+    document.getElementById('stat-available').textContent = available;
+    document.getElementById('stat-unavailable').textContent = unavailable;
+    document.getElementById('stat-errors').textContent = errors;
+
+    if (meta.generated) {
+      const date = new Date(meta.generated);
+      document.getElementById('last-updated').textContent = 'Updated ' + date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
+    }
+
+    renderTable();
+  } catch (err) {
+    document.getElementById('table-body').innerHTML = '<tr><td colspan="4"><div class="empty-state">Unable to load data. Run the availability checker to generate data.</div></td></tr>';
+  } finally {
+    btn.classList.remove('loading');
+  }
+}
+
+function renderTable() {
+  const tbody = document.getElementById('table-body');
+  let filtered = allData;
+
+  if (currentFilter === 'available') filtered = allData.filter(d => d.has_availability);
+  else if (currentFilter === 'unavailable') filtered = allData.filter(d => !d.has_availability && !d.error);
+  else if (currentFilter === 'error') filtered = allData.filter(d => d.error);
+
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    filtered = filtered.filter(d => d.name.toLowerCase().includes(q));
+  }
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4"><div class="empty-state">No providers match this filter.</div></td></tr>';
+    return;
+  }
+
+  // Sort: available first, then unavailable, then errors
+  filtered.sort((a, b) => {
+    if (a.has_availability && !b.has_availability) return -1;
+    if (!a.has_availability && b.has_availability) return 1;
+    if (a.error && !b.error) return 1;
+    if (!a.error && b.error) return -1;
+    return a.name.localeCompare(b.name);
+  });
+
+  tbody.innerHTML = filtered.map((doc, i) => {
+    let statusClass, statusLabel;
+    if (doc.error) {
+      statusClass = 'error';
+      statusLabel = 'Error';
+    } else if (doc.has_availability) {
+      statusClass = 'available';
+      statusLabel = 'Available';
+    } else {
+      statusClass = 'unavailable';
+      statusLabel = 'No Slots';
+    }
+
+    let nextDate = '—';
+    if (doc.next_availability) {
+      const dates = Object.values(doc.next_availability);
+      if (dates.length > 0) {
+        const d = new Date(dates[0]);
+        nextDate = '<strong>' + d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) + '</strong> at ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      }
+    }
+
+    const zocdocUrl = doc.url || '#';
+
+    return `<tr style="animation-delay: ${i * 0.03}s">
+      <td class="doctor-name"><a href="${zocdocUrl}" target="_blank" rel="noopener">${doc.name}</a></td>
+      <td><span class="status-badge ${statusClass}"><span class="status-dot"></span>${statusLabel}</span></td>
+      <td class="slot-count">${doc.error ? '—' : (doc.total_slots || 0)}</td>
+      <td class="next-date">${doc.error ? doc.error : nextDate}</td>
+    </tr>`;
+  }).join('');
+}
+
+function setFilter(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTable();
+}
+
+function searchDoctors(query) {
+  searchQuery = query;
+  renderTable();
+}
+
+loadData();
+</script>
+
+</body>
+</html>
