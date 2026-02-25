@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated": "2026-02-24T18:06:28.993488",
+    "generated": "2026-02-24T19:02:52.673722",
     "total": 46,
     "available": 42,
     "unavailable": 0,
@@ -2148,26 +2148,6 @@
       "url": "https://www.zocdoc.com/doctor/ryan-haaksma-dpm-673141"
     },
     {
-      "error": "No Redux state found - possible CAPTCHA block",
-      "name": "Dean Sorrento",
-      "url": "https://www.zocdoc.com/doctor/dean-sorrento-dpm-703476"
-    },
-    {
-      "error": "No Redux state found - possible CAPTCHA block",
-      "name": "Chinn Pusri",
-      "url": "https://www.zocdoc.com/doctor/chinn-pusri-dpm-673120"
-    },
-    {
-      "error": "No Redux state found - possible CAPTCHA block",
-      "name": "Kim Eneberg",
-      "url": "https://www.zocdoc.com/professional/kim-eneberg-pt-673129"
-    },
-    {
-      "error": "No Redux state found - possible CAPTCHA block",
-      "name": "Steven Baker",
-      "url": "https://www.zocdoc.com/doctor/steven-baker-dpm-673145"
-    },
-    {
       "next_availability": {
         "lo_BWNy4znWIkOv5xpyxSu8BB": "2026-03-04T14:00:00-05:00"
       },
@@ -3383,6 +3363,26 @@
       "has_availability": true,
       "name": "Jill Blau",
       "url": "https://www.zocdoc.com/doctor/jill-blau-dpm-673131"
+    },
+    {
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Kim Eneberg",
+      "url": "https://www.zocdoc.com/professional/kim-eneberg-pt-673129"
+    },
+    {
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Steven Baker",
+      "url": "https://www.zocdoc.com/doctor/steven-baker-dpm-673145"
+    },
+    {
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Dean Sorrento",
+      "url": "https://www.zocdoc.com/doctor/dean-sorrento-dpm-703476"
+    },
+    {
+      "error": "No Redux state found - possible CAPTCHA block",
+      "name": "Chinn Pusri",
+      "url": "https://www.zocdoc.com/doctor/chinn-pusri-dpm-673120"
     }
   ]
 }
