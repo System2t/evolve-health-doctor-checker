@@ -495,8 +495,8 @@
         function updateScanTimes() {
             const zEl = document.getElementById('zocdoc-scan-time');
             const hEl = document.getElementById('holly-scan-time');
-            if (zocdocData && zocdocData.scan_date) {
-                const d = new Date(zocdocData.scan_date);
+            if (zocdocData && (zocdocData.scan_date || (zocdocData.meta && zocdocData.meta.generated))) {
+                const d = new Date(zocdocData.scan_date || zocdocData.meta.generated);
                 zEl.textContent = 'Zocdoc: ' + formatDateTime(d);
             }
             if (hollyData && hollyData.scan_date) {
@@ -526,19 +526,31 @@
             const byNorm = {};
 
             // Process Zocdoc data
-            if (zocdocData) {
-                const providers = zocdocData.results || zocdocData.providers || zocdocData.data || [];
-                providers.forEach(p => {
-                    const name = p.name || p.provider || p.doctor || '';
+            if (zocdocData && zocdocData.doctors) {
+                zocdocData.doctors.forEach(p => {
+                    const name = p.name || '';
                     const norm = normalizeName(name);
                     if (!norm) return;
                     if (!byNorm[norm]) byNorm[norm] = { name: name, zocdoc: null, holly: null };
+
+                    // Determine status from has_availability field
+                    let status = 'no_availability';
+                    if (p.error) status = 'error';
+                    else if (p.has_availability) status = 'available';
+
+                    // next_availability is an object {locationId: dateStr} — find earliest
+                    let nextAvail = null;
+                    if (p.next_availability && typeof p.next_availability === 'object') {
+                        const dates = Object.values(p.next_availability).filter(Boolean).sort();
+                        if (dates.length > 0) nextAvail = dates[0].split('T')[0];
+                    }
+
                     byNorm[norm].zocdoc = {
                         name: name,
-                        url: p.url || p.zocdoc_url || p.link || '',
-                        status: p.status || (p.open_slots > 0 ? 'available' : (p.error ? 'error' : 'no_availability')),
-                        open_slots: p.open_slots != null ? p.open_slots : p.slots,
-                        next_available: p.next_available || p.nextAvailable || null,
+                        url: p.url || '',
+                        status: status,
+                        open_slots: p.total_slots != null ? p.total_slots : null,
+                        next_available: nextAvail,
                         error: p.error || null
                     };
                 });
