@@ -1,5 +1,5 @@
 {
-  "scan_date": "2026-02-24T20:26:00.985135",
+  "scan_date": "2026-02-25T05:39:03.200311",
   "scan_type": "holly",
   "locations_scanned": 40,
   "locations_successful": 40,
@@ -15,7 +15,7 @@
       "overall_status": "available",
       "total_locations": 1,
       "locations_with_availability": 1,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Lake Mary",
@@ -26,7 +26,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-02-27",
@@ -53,7 +52,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-02-27",
@@ -79,8 +77,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 25
+          "next_available": "2026-02-25",
+          "total_available_days": 24
         }
       ]
     },
@@ -91,7 +89,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Clermont",
@@ -102,7 +100,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-03-03",
             "2026-03-05",
             "2026-03-09",
@@ -118,7 +115,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-03-03",
             "2026-03-05",
             "2026-03-09",
@@ -133,8 +129,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 14
+          "next_available": "2026-03-03",
+          "total_available_days": 13
         },
         {
           "office_name": "Winter Garden",
@@ -178,7 +174,7 @@
       "overall_status": "partial",
       "total_locations": 2,
       "locations_with_availability": 1,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Port Richey",
@@ -189,7 +185,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-03-02",
@@ -212,7 +207,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-03-02",
@@ -234,8 +228,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 21
+          "next_available": "2026-02-25",
+          "total_available_days": 20
         },
         {
           "office_name": "Spring Hill",
@@ -259,7 +253,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Katy",
@@ -270,7 +264,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -288,7 +281,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -305,8 +297,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 16
+          "next_available": "2026-02-26",
+          "total_available_days": 15
         },
         {
           "office_name": "Spring",
@@ -352,7 +344,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Hunter's Creek",
@@ -363,7 +355,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-27",
             "2026-03-03",
@@ -381,7 +372,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-27",
             "2026-03-03",
@@ -398,8 +388,8 @@
             "2026-03-27",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 16
+          "next_available": "2026-02-25",
+          "total_available_days": 15
         },
         {
           "office_name": "Pleasant Hill",
@@ -442,7 +432,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "St Pete",
@@ -453,7 +443,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-03-03",
             "2026-03-04",
@@ -465,7 +454,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-03-03",
             "2026-03-04",
@@ -476,8 +464,8 @@
             "2026-03-25",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 10
+          "next_available": "2026-02-25",
+          "total_available_days": 9
         },
         {
           "office_name": "Trinity",
@@ -603,7 +591,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Lake Mary",
@@ -649,7 +637,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-27",
             "2026-03-03",
@@ -667,7 +654,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-27",
             "2026-03-03",
@@ -684,8 +670,8 @@
             "2026-03-27",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 16
+          "next_available": "2026-02-25",
+          "total_available_days": 15
         }
       ]
     },
@@ -696,7 +682,7 @@
       "overall_status": "available",
       "total_locations": 1,
       "locations_with_availability": 1,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Spring Hill",
@@ -707,7 +693,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-03-02",
@@ -730,7 +715,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-03-02",
@@ -752,8 +736,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 21
+          "next_available": "2026-02-25",
+          "total_available_days": 20
         }
       ]
     },
@@ -910,7 +894,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Sarasota",
@@ -921,7 +905,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-27",
             "2026-03-03",
             "2026-03-10",
@@ -933,7 +916,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-27",
             "2026-03-03",
             "2026-03-10",
@@ -944,8 +926,8 @@
             "2026-03-27",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 10
+          "next_available": "2026-02-27",
+          "total_available_days": 9
         },
         {
           "office_name": "Venice",
@@ -997,7 +979,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Ocoee",
@@ -1039,7 +1021,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -1053,7 +1034,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -1066,8 +1046,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 12
+          "next_available": "2026-02-26",
+          "total_available_days": 11
         }
       ]
     },
@@ -1078,7 +1058,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Casselberry",
@@ -1089,7 +1069,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-27",
             "2026-03-03",
@@ -1107,7 +1086,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-27",
             "2026-03-03",
@@ -1124,8 +1102,8 @@
             "2026-03-27",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 16
+          "next_available": "2026-02-25",
+          "total_available_days": 15
         },
         {
           "office_name": "Oviedo",
@@ -1170,7 +1148,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Celebration",
@@ -1216,7 +1194,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-03-03",
             "2026-03-06",
@@ -1229,7 +1206,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-03-03",
             "2026-03-06",
@@ -1241,8 +1217,8 @@
             "2026-03-27",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 11
+          "next_available": "2026-02-25",
+          "total_available_days": 10
         }
       ]
     },
@@ -1253,7 +1229,7 @@
       "overall_status": "available",
       "total_locations": 1,
       "locations_with_availability": 1,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Clermont",
@@ -1264,7 +1240,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-02-27",
@@ -1289,7 +1264,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-02-27",
@@ -1313,8 +1287,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 23
+          "next_available": "2026-02-25",
+          "total_available_days": 22
         }
       ]
     },
@@ -1349,7 +1323,7 @@
       "overall_status": "available",
       "total_locations": 3,
       "locations_with_availability": 3,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Boynton Beach",
@@ -1412,7 +1386,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-10",
             "2026-03-12",
@@ -1423,7 +1396,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-10",
             "2026-03-12",
@@ -1433,8 +1405,8 @@
             "2026-03-26",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 9
+          "next_available": "2026-02-26",
+          "total_available_days": 8
         }
       ]
     },
@@ -1445,7 +1417,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Brandon",
@@ -1456,7 +1428,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-03-02",
             "2026-03-03",
             "2026-03-09",
@@ -1469,7 +1440,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-03-02",
             "2026-03-03",
             "2026-03-09",
@@ -1481,8 +1451,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 11
+          "next_available": "2026-03-02",
+          "total_available_days": 10
         },
         {
           "office_name": "Riverview",
@@ -1538,7 +1508,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Casselberry",
@@ -1582,7 +1552,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-27",
             "2026-03-03",
@@ -1598,7 +1567,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-27",
             "2026-03-03",
@@ -1613,8 +1581,8 @@
             "2026-03-27",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 14
+          "next_available": "2026-02-25",
+          "total_available_days": 13
         }
       ]
     },
@@ -1625,7 +1593,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Lutz",
@@ -1636,7 +1604,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-03-03",
             "2026-03-04",
@@ -1649,7 +1616,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-03-03",
             "2026-03-04",
@@ -1661,8 +1627,8 @@
             "2026-03-25",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 11
+          "next_available": "2026-02-25",
+          "total_available_days": 10
         },
         {
           "office_name": "Wesley Chapel",
@@ -1718,7 +1684,7 @@
       "overall_status": "available",
       "total_locations": 1,
       "locations_with_availability": 1,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Largo",
@@ -1729,7 +1695,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-02-27",
@@ -1757,7 +1722,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-02-27",
@@ -1784,8 +1748,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 26
+          "next_available": "2026-02-25",
+          "total_available_days": 25
         }
       ]
     },
@@ -1796,7 +1760,7 @@
       "overall_status": "available",
       "total_locations": 1,
       "locations_with_availability": 1,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Tavares",
@@ -1807,7 +1771,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-02-27",
@@ -1835,7 +1798,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-02-27",
@@ -1862,8 +1824,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 26
+          "next_available": "2026-02-25",
+          "total_available_days": 25
         }
       ]
     },
@@ -1874,7 +1836,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Lutz",
@@ -1926,7 +1888,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-03-03",
             "2026-03-04",
@@ -1938,7 +1899,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-03-03",
             "2026-03-04",
             "2026-03-10",
@@ -1948,8 +1908,8 @@
             "2026-03-25",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 10
+          "next_available": "2026-02-25",
+          "total_available_days": 9
         }
       ]
     },
@@ -2032,7 +1992,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Boynton Beach",
@@ -2043,7 +2003,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -2061,7 +2020,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -2078,8 +2036,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 16
+          "next_available": "2026-02-26",
+          "total_available_days": 15
         },
         {
           "office_name": "Delray",
@@ -2125,7 +2083,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Brandon",
@@ -2169,7 +2127,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -2185,7 +2142,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -2200,8 +2156,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 14
+          "next_available": "2026-02-26",
+          "total_available_days": 13
         }
       ]
     },
@@ -2212,7 +2168,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Sarasota",
@@ -2268,7 +2224,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-27",
             "2026-03-03",
             "2026-03-06",
@@ -2281,7 +2236,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-27",
             "2026-03-03",
             "2026-03-06",
@@ -2293,8 +2247,8 @@
             "2026-03-27",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 11
+          "next_available": "2026-02-27",
+          "total_available_days": 10
         }
       ]
     },
@@ -2390,7 +2344,7 @@
       "overall_status": "partial",
       "total_locations": 2,
       "locations_with_availability": 1,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-26",
       "locations": [
         {
           "office_name": "Cypress",
@@ -2414,7 +2368,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -2430,7 +2383,6 @@
             "2026-03-26"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -2445,8 +2397,8 @@
             "2026-03-24",
             "2026-03-26"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 14
+          "next_available": "2026-02-26",
+          "total_available_days": 13
         }
       ]
     },
@@ -2538,7 +2490,7 @@
       "overall_status": "available",
       "total_locations": 1,
       "locations_with_availability": 1,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Pearland",
@@ -2549,7 +2501,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-02-27",
@@ -2577,7 +2528,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-02-27",
@@ -2604,8 +2554,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 26
+          "next_available": "2026-02-25",
+          "total_available_days": 25
         }
       ]
     },
@@ -2616,7 +2566,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Pearland",
@@ -2627,7 +2577,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-27",
             "2026-03-03",
             "2026-03-06",
@@ -2639,7 +2588,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-27",
             "2026-03-03",
             "2026-03-06",
@@ -2650,8 +2598,8 @@
             "2026-03-27",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 10
+          "next_available": "2026-02-27",
+          "total_available_days": 9
         },
         {
           "office_name": "Sugar Land",
@@ -2707,7 +2655,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Lake Nona",
@@ -2755,7 +2703,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-03-03",
             "2026-03-04",
@@ -2772,7 +2719,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-03-03",
             "2026-03-04",
@@ -2788,8 +2734,8 @@
             "2026-03-27",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 15
+          "next_available": "2026-02-25",
+          "total_available_days": 14
         }
       ]
     },
@@ -2800,7 +2746,7 @@
       "overall_status": "partial",
       "total_locations": 3,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Delray",
@@ -2811,7 +2757,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-03",
             "2026-03-05",
@@ -2824,7 +2769,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-03",
             "2026-03-05",
@@ -2836,8 +2780,8 @@
             "2026-03-26",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 11
+          "next_available": "2026-02-26",
+          "total_available_days": 10
         },
         {
           "office_name": "Jupiter",
@@ -2906,7 +2850,7 @@
       "overall_status": "available",
       "total_locations": 1,
       "locations_with_availability": 1,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-26",
       "locations": [
         {
           "office_name": "Winter Garden",
@@ -2917,7 +2861,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -2935,7 +2878,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -2952,8 +2894,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 16
+          "next_available": "2026-02-26",
+          "total_available_days": 15
         }
       ]
     },
@@ -2964,7 +2906,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-26",
       "locations": [
         {
           "office_name": "Lutz",
@@ -3020,7 +2962,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-03-03",
             "2026-03-04",
             "2026-03-10",
@@ -3029,7 +2970,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-03-03",
             "2026-03-04",
             "2026-03-10",
@@ -3037,8 +2977,8 @@
             "2026-03-24",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 7
+          "next_available": "2026-03-03",
+          "total_available_days": 6
         }
       ]
     },
@@ -3049,7 +2989,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Trinity",
@@ -3060,7 +3000,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-03-03",
             "2026-03-04",
@@ -3073,7 +3012,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-03-03",
             "2026-03-04",
@@ -3085,8 +3023,8 @@
             "2026-03-25",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 11
+          "next_available": "2026-02-25",
+          "total_available_days": 10
         },
         {
           "office_name": "Westchase",
@@ -3142,7 +3080,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Spring",
@@ -3153,7 +3091,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -3171,7 +3108,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -3188,8 +3124,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 16
+          "next_available": "2026-02-26",
+          "total_available_days": 15
         },
         {
           "office_name": "Spring Branch",
@@ -3235,7 +3171,7 @@
       "overall_status": "available",
       "total_locations": 1,
       "locations_with_availability": 1,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Lutz",
@@ -3246,7 +3182,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-03-03",
             "2026-03-04",
@@ -3259,7 +3194,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-03-03",
             "2026-03-04",
@@ -3271,8 +3205,8 @@
             "2026-03-25",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 11
+          "next_available": "2026-02-25",
+          "total_available_days": 10
         }
       ]
     },
@@ -3283,7 +3217,7 @@
       "overall_status": "available",
       "total_locations": 1,
       "locations_with_availability": 1,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Jupiter",
@@ -3294,7 +3228,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-02-27",
@@ -3322,7 +3255,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-02-27",
             "2026-03-02",
@@ -3348,8 +3280,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 26
+          "next_available": "2026-02-25",
+          "total_available_days": 25
         }
       ]
     },
@@ -3360,7 +3292,7 @@
       "overall_status": "available",
       "total_locations": 1,
       "locations_with_availability": 1,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Spring Branch",
@@ -3371,7 +3303,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-02-27",
@@ -3399,7 +3330,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-02-27",
@@ -3426,8 +3356,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 26
+          "next_available": "2026-02-25",
+          "total_available_days": 25
         }
       ]
     },
@@ -3438,7 +3368,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Cypress",
@@ -3449,7 +3379,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -3467,7 +3396,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-26",
             "2026-03-02",
             "2026-03-03",
@@ -3484,8 +3412,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 16
+          "next_available": "2026-02-26",
+          "total_available_days": 15
         },
         {
           "office_name": "Katy",
@@ -3531,7 +3459,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Pearland",
@@ -3587,7 +3515,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-27",
             "2026-03-03",
             "2026-03-06",
@@ -3599,7 +3526,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-27",
             "2026-03-03",
             "2026-03-06",
@@ -3610,8 +3536,8 @@
             "2026-03-27",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 10
+          "next_available": "2026-02-27",
+          "total_available_days": 9
         }
       ]
     },
@@ -3622,7 +3548,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Oviedo",
@@ -3633,7 +3559,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-27",
             "2026-03-03",
@@ -3662,8 +3587,8 @@
             "2026-03-27",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 16
+          "next_available": "2026-02-25",
+          "total_available_days": 15
         },
         {
           "office_name": "Winter Park",
@@ -3702,7 +3627,7 @@
       "overall_status": "available",
       "total_locations": 2,
       "locations_with_availability": 2,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Celebration",
@@ -3713,7 +3638,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-27",
             "2026-03-03",
@@ -3731,7 +3655,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-27",
             "2026-03-03",
@@ -3748,8 +3671,8 @@
             "2026-03-27",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 16
+          "next_available": "2026-02-25",
+          "total_available_days": 15
         },
         {
           "office_name": "Hunter's Creek",
@@ -3795,7 +3718,7 @@
       "overall_status": "available",
       "total_locations": 1,
       "locations_with_availability": 1,
-      "next_available": "2026-02-24",
+      "next_available": "2026-02-25",
       "locations": [
         {
           "office_name": "Palm Harbor (Physical Therapy)",
@@ -3806,7 +3729,6 @@
           "has_return_patient": true,
           "has_any_availability": true,
           "new_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-03-02",
@@ -3833,7 +3755,6 @@
             "2026-03-31"
           ],
           "return_patient_dates": [
-            "2026-02-24",
             "2026-02-25",
             "2026-02-26",
             "2026-03-02",
@@ -3859,8 +3780,8 @@
             "2026-03-30",
             "2026-03-31"
           ],
-          "next_available": "2026-02-24",
-          "total_available_days": 25
+          "next_available": "2026-02-25",
+          "total_available_days": 24
         }
       ]
     }
