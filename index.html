@@ -444,9 +444,8 @@
         </div>
 
         <div class="source-tabs">
-            <div class="source-tab active" data-view="unified">Unified</div>
-            <div class="source-tab" data-view="zocdoc">Zocdoc Only</div>
-            <div class="source-tab" data-view="holly">Holly Only</div>
+            <div class="source-tab active" data-view="holly">Holly</div>
+            <div class="source-tab" data-view="zocdoc">Zocdoc</div>
         </div>
 
         <div class="table-wrap">
@@ -467,9 +466,9 @@
         let mergedDoctors = [];
         let currentFilter = 'all';
         let currentSearch = '';
-        let currentView = 'unified';
+        let currentView = 'holly';
         let sortCol = 'status';
-        let sortAsc = true;
+        let sortAsc = false;
 
         // --- Data Loading ---
         async function loadData() {
@@ -718,9 +717,7 @@
             });
 
             // Render based on view
-            if (currentView === 'unified') {
-                renderUnifiedView(thead, tbody, docs);
-            } else if (currentView === 'zocdoc') {
+            if (currentView === 'zocdoc') {
                 renderZocdocView(thead, tbody, docs);
             } else {
                 renderHollyView(thead, tbody, docs);
