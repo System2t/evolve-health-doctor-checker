@@ -651,31 +651,54 @@
         }
 
         function renderStats() {
-            const total = mergedDoctors.length;
-            const allGood = mergedDoctors.filter(d => d.overall === 'available').length;
-            const gaps = mergedDoctors.filter(d => d.overall === 'has_gaps').length;
-            const none = mergedDoctors.filter(d => d.overall === 'no_availability').length;
-            const errs = mergedDoctors.filter(d => d.overall === 'error').length;
+            const docs = getDocsForCurrentView();
+            const total = docs.length;
+            const allGood = docs.filter(d => getViewStatus(d) === 'available').length;
+            const gaps = docs.filter(d => getViewStatus(d) === 'has_gaps').length;
+            const none = docs.filter(d => getViewStatus(d) === 'no_availability').length;
+            const errs = docs.filter(d => getViewStatus(d) === 'error').length;
 
             document.getElementById('stats-row').innerHTML = `
                 <div class="stat-card"><div class="label">Total Providers</div><div class="value blue">${total}</div></div>
                 <div class="stat-card"><div class="label">All Good</div><div class="value green">${allGood}</div></div>
-                <div class="stat-card"><div class="label">Has Gaps</div><div class="value amber">${gaps}</div></div>
+                ${gaps > 0 ? `<div class="stat-card"><div class="label">Has Gaps</div><div class="value amber">${gaps}</div></div>` : ''}
                 <div class="stat-card"><div class="label">No Availability</div><div class="value red">${none}</div></div>
                 ${errs > 0 ? `<div class="stat-card"><div class="label">Errors</div><div class="value amber">${errs}</div></div>` : ''}
             `;
+        }
+
+        // Get doctors relevant to current tab
+        function getDocsForCurrentView() {
+            if (currentView === 'zocdoc') return mergedDoctors.filter(d => d.zocdoc);
+            return mergedDoctors.filter(d => d.holly);
+        }
+
+        // Get status for current tab context
+        function getViewStatus(d) {
+            if (currentView === 'zocdoc') {
+                if (!d.zocdoc) return 'not_listed';
+                return d.zocdoc.status; // 'available', 'no_availability', 'error'
+            } else {
+                if (!d.holly) return 'not_listed';
+                if (d.holly.overall_status === 'partial') return 'has_gaps';
+                return d.holly.overall_status; // 'available', 'no_availability'
+            }
         }
 
         function renderTable() {
             const thead = document.getElementById('table-head');
             const tbody = document.getElementById('table-body');
 
-            // Filter
-            let docs = mergedDoctors.filter(d => {
-                if (currentFilter === 'all-good') return d.overall === 'available';
-                if (currentFilter === 'has-gaps') return d.overall === 'has_gaps';
-                if (currentFilter === 'no-availability') return d.overall === 'no_availability';
-                if (currentFilter === 'errors') return d.overall === 'error';
+            // Only show doctors relevant to current tab
+            let docs = getDocsForCurrentView();
+
+            // Filter using tab-specific status
+            docs = docs.filter(d => {
+                const status = getViewStatus(d);
+                if (currentFilter === 'all-good') return status === 'available';
+                if (currentFilter === 'has-gaps') return status === 'has_gaps';
+                if (currentFilter === 'no-availability') return status === 'no_availability';
+                if (currentFilter === 'errors') return status === 'error';
                 return true;
             });
 
@@ -694,7 +717,7 @@
                 });
             }
 
-            // Sort
+            // Sort using tab-specific status
             docs.sort((a, b) => {
                 const statusOrder = { error: 0, no_availability: 1, has_gaps: 2, available: 3 };
                 let va, vb;
@@ -702,7 +725,8 @@
                     va = a.name.toLowerCase(); vb = b.name.toLowerCase();
                     return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
                 } else if (sortCol === 'status') {
-                    va = statusOrder[a.overall] ?? 9; vb = statusOrder[b.overall] ?? 9;
+                    va = statusOrder[getViewStatus(a)] ?? 9;
+                    vb = statusOrder[getViewStatus(b)] ?? 9;
                 } else if (sortCol === 'zocdoc') {
                     va = a.zocdoc ? (a.zocdoc.open_slots ?? -1) : -2;
                     vb = b.zocdoc ? (b.zocdoc.open_slots ?? -1) : -2;
@@ -791,7 +815,7 @@
                 <th>Link</th>
             </tr>`;
 
-            const zDocs = docs.filter(d => d.zocdoc);
+            const zDocs = docs;
             if (zDocs.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="5" class="no-data">No Zocdoc data available. Run the Zocdoc checker.</td></tr>';
                 return;
@@ -818,7 +842,7 @@
                 <th onclick="window._sort('next')">Next Available ${sortArrow('next')}</th>
             </tr>`;
 
-            const hDocs = docs.filter(d => d.holly);
+            const hDocs = docs;
             if (hDocs.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="5" class="no-data">No Holly data available. Run the Holly checker.</td></tr>';
                 return;
@@ -965,6 +989,11 @@
                 document.querySelectorAll('.source-tab').forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
                 currentView = tab.dataset.view;
+                // Reset filter to 'all' when switching tabs
+                currentFilter = 'all';
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+                renderStats();
                 renderTable();
             });
         });
