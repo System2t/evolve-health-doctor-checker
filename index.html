@@ -1,558 +1,968 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Evolve Health — Provider Availability</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #f8f7f4;
-    --surface: #ffffff;
-    --surface-alt: #f0efec;
-    --border: #e4e2dd;
-    --text: #1a1a1a;
-    --text-secondary: #6b6966;
-    --text-tertiary: #9c9891;
-    --accent: #0f6b5e;
-    --accent-light: #e8f5f1;
-    --available: #0f6b5e;
-    --available-bg: #e8f5f1;
-    --unavailable: #c4432b;
-    --unavailable-bg: #fdf0ee;
-    --error: #96793e;
-    --error-bg: #faf5eb;
-    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
-    --radius: 12px;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolve Health — Provider Availability</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #0f6b5e;
+            --green-bg: #e8f5f0;
+            --red: #c4432b;
+            --red-bg: #fdecea;
+            --amber: #96793e;
+            --amber-bg: #fef6e4;
+            --blue: #2d6a9f;
+            --blue-bg: #e8f0f8;
+            --text: #1a2332;
+            --text-secondary: #5a6a7e;
+            --border: #e2e7ed;
+            --bg: #f7f8fa;
+            --white: #ffffff;
+            --header-h: 48px;
+        }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-  }
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
 
-  .header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0 40px; /* header padding */
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(12px);
-    background: rgba(255,255,255,0.92);
-  }
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
 
-  .header-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 48px;
-  }
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            height: var(--header-h);
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-  .logo-group {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
+        header .container {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            width: 100%;
+        }
 
-  .logo-mark {
-    width: 36px;
-    height: 36px;
-    background: var(--accent);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 700;
-    font-size: 16px;
-    font-family: 'Fraunces', serif;
-  }
+        header img {
+            height: 30px;
+            width: 30px;
+            border-radius: 6px;
+        }
 
-  .logo-text {
-    font-family: 'Fraunces', serif;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: var(--text);
-  }
+        header h1 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: -0.01em;
+        }
 
-  .logo-text span {
-    color: var(--text-tertiary);
-    font-weight: 300;
-    margin-left: 8px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-  }
+        header .scan-info {
+            margin-left: auto;
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            gap: 16px;
+        }
 
-  .header-meta {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    font-size: 13px;
-    color: var(--text-secondary);
-  }
+        header .scan-info span { white-space: nowrap; }
 
-  .refresh-btn {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 16px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--surface);
-    color: var(--text-secondary);
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: 'DM Sans', sans-serif;
-  }
+        /* Stats Row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            padding: 20px 0;
+        }
 
-  .refresh-btn:hover {
-    background: var(--surface-alt);
-    color: var(--text);
-  }
+        .stat-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 18px;
+        }
 
-  .refresh-btn.loading svg {
-    animation: spin 1s linear infinite;
-  }
+        .stat-card .label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 4px;
+        }
 
-  @keyframes spin { to { transform: rotate(360deg); } }
+        .stat-card .value {
+            font-family: 'Fraunces', serif;
+            font-size: 28px;
+            font-weight: 600;
+            line-height: 1.1;
+        }
 
-  .main {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px 40px 40px;
-  }
+        .stat-card .value.green { color: var(--green); }
+        .stat-card .value.red { color: var(--red); }
+        .stat-card .value.amber { color: var(--amber); }
+        .stat-card .value.blue { color: var(--blue); }
 
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 32px;
-  }
+        /* Toolbar */
+        .toolbar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 0 16px;
+            flex-wrap: wrap;
+        }
 
-  .stat-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px 24px;
-    box-shadow: var(--shadow-sm);
-  }
+        .filter-btn {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--white);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
 
-  .stat-label {
-    font-size: 12px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-tertiary);
-    margin-bottom: 8px;
-  }
+        .filter-btn:hover { border-color: var(--text-secondary); color: var(--text); }
+        .filter-btn.active { background: var(--text); color: var(--white); border-color: var(--text); }
 
-  .stat-value {
-    font-family: 'Fraunces', serif;
-    font-size: 32px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    line-height: 1;
-  }
+        .search-box {
+            margin-left: auto;
+            position: relative;
+        }
 
-  .stat-value.available { color: var(--available); }
-  .stat-value.unavailable { color: var(--unavailable); }
-  .stat-value.error { color: var(--error); }
+        .search-box input {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            padding: 7px 12px 7px 32px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 220px;
+            outline: none;
+            transition: border-color 0.15s;
+        }
 
-  .controls-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-  }
+        .search-box input:focus { border-color: var(--blue); }
 
-  .filter-group {
-    display: flex;
-    gap: 8px;
-  }
+        .search-box::before {
+            content: '⌕';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
 
-  .filter-btn {
-    padding: 7px 16px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--surface);
-    color: var(--text-secondary);
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: 'DM Sans', sans-serif;
-  }
+        /* Source tabs */
+        .source-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 0;
+        }
 
-  .filter-btn:hover { background: var(--surface-alt); }
+        .source-tab {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 18px;
+            border: 1px solid var(--border);
+            border-bottom: none;
+            background: var(--bg);
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.15s;
+            margin-bottom: -1px;
+            position: relative;
+            z-index: 1;
+        }
 
-  .filter-btn.active {
-    background: var(--text);
-    color: white;
-    border-color: var(--text);
-  }
+        .source-tab:hover { color: var(--text); }
+        .source-tab.active {
+            background: var(--white);
+            color: var(--text);
+            font-weight: 600;
+            z-index: 2;
+        }
 
-  .search-input {
-    padding: 8px 16px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 13px;
-    font-family: 'DM Sans', sans-serif;
-    width: 240px;
-    outline: none;
-    transition: border-color 0.2s;
-    background: var(--surface);
-  }
+        /* Table */
+        .table-wrap {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 0 10px 10px 10px;
+            overflow: hidden;
+        }
 
-  .search-input:focus { border-color: var(--accent); }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
 
-  .table-wrap {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-  }
+        thead th {
+            text-align: left;
+            padding: 10px 14px;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            white-space: nowrap;
+            user-select: none;
+        }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+        thead th:hover { color: var(--text); }
+        thead th .sort-arrow { font-size: 10px; margin-left: 3px; opacity: 0.4; }
+        thead th.sorted .sort-arrow { opacity: 1; }
 
-  thead th {
-    padding: 14px 24px;
-    text-align: left;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-tertiary);
-    background: var(--surface-alt);
-    border-bottom: 1px solid var(--border);
-  }
+        tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background 0.1s;
+        }
 
-  tbody tr {
-    border-bottom: 1px solid var(--border);
-    transition: background 0.15s;
-  }
+        tbody tr:last-child { border-bottom: none; }
+        tbody tr:hover { background: #f9fafb; }
+        tbody tr.has-gap { background: #fffbf5; }
+        tbody tr.has-gap:hover { background: #fff6eb; }
 
-  tbody tr:last-child { border-bottom: none; }
-  tbody tr:hover { background: #fafaf8; }
+        td {
+            padding: 10px 14px;
+            vertical-align: top;
+        }
 
-  tbody td {
-    padding: 16px 24px;
-    font-size: 14px;
-  }
+        td.provider-name {
+            font-weight: 500;
+            white-space: nowrap;
+        }
 
-  .doctor-name {
-    font-weight: 600;
-    color: var(--text);
-  }
+        td.provider-name a {
+            color: var(--text);
+            text-decoration: none;
+        }
 
-  .doctor-name a {
-    color: inherit;
-    text-decoration: none;
-  }
+        td.provider-name a:hover { color: var(--blue); text-decoration: underline; }
 
-  .doctor-name a:hover {
-    color: var(--accent);
-  }
+        /* Status badges */
+        .badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
 
-  .status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-  }
+        .badge.available { background: var(--green-bg); color: var(--green); }
+        .badge.partial { background: var(--amber-bg); color: var(--amber); }
+        .badge.no-availability { background: var(--red-bg); color: var(--red); }
+        .badge.error { background: var(--amber-bg); color: var(--amber); }
+        .badge.not-listed { background: #f0f0f0; color: #888; }
 
-  .status-badge.available {
-    background: var(--available-bg);
-    color: var(--available);
-  }
+        /* Holly location pills */
+        .holly-locations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
 
-  .status-badge.unavailable {
-    background: var(--unavailable-bg);
-    color: var(--unavailable);
-  }
+        .loc-pill {
+            font-size: 11px;
+            padding: 2px 7px;
+            border-radius: 3px;
+            white-space: nowrap;
+            cursor: default;
+        }
 
-  .status-badge.error {
-    background: var(--error-bg);
-    color: var(--error);
-  }
+        .loc-pill.ok { background: var(--green-bg); color: var(--green); }
+        .loc-pill.none { background: var(--red-bg); color: var(--red); }
 
-  .status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: currentColor;
-  }
+        .loc-pill .loc-detail {
+            font-weight: 400;
+            opacity: 0.8;
+            margin-left: 2px;
+        }
 
-  .slot-count {
-    font-variant-numeric: tabular-nums;
-    color: var(--text-secondary);
-  }
+        /* Zocdoc cell */
+        .zocdoc-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-  .next-date {
-    color: var(--text-secondary);
-    font-size: 13px;
-  }
+        .zocdoc-info .slots {
+            font-family: 'Fraunces', serif;
+            font-size: 16px;
+            font-weight: 600;
+        }
 
-  .next-date strong {
-    color: var(--text);
-    font-weight: 500;
-  }
+        .zocdoc-info .slots.green { color: var(--green); }
+        .zocdoc-info .slots.red { color: var(--red); }
 
-  .loading-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 80px 40px;
-    color: var(--text-tertiary);
-    gap: 16px;
-  }
+        .zocdoc-info .meta {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
 
-  .loading-state .spinner {
-    width: 32px;
-    height: 32px;
-    border: 3px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-  }
+        .zocdoc-link {
+            font-size: 11px;
+            color: var(--blue);
+            text-decoration: none;
+        }
 
-  .empty-state {
-    text-align: center;
-    padding: 60px 40px;
-    color: var(--text-tertiary);
-    font-size: 14px;
-  }
+        .zocdoc-link:hover { text-decoration: underline; }
 
-  .footer {
-    text-align: center;
-    padding: 24px;
-    font-size: 12px;
-    color: var(--text-tertiary);
-  }
+        /* Holly summary cell */
+        .holly-summary {
+            font-size: 12px;
+        }
 
-  @media (max-width: 768px) {
-    .header { padding: 0 20px; }
-    .main { padding: 20px; }
-    .stats-row { grid-template-columns: repeat(2, 1fr); }
-    .controls-bar { flex-direction: column; gap: 12px; align-items: stretch; }
-    .search-input { width: 100%; }
-    thead th, tbody td { padding: 12px 16px; }
-    .header-meta { display: none; }
-  }
+        .holly-summary .count {
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+            font-size: 14px;
+        }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+        .holly-summary .count.green { color: var(--green); }
+        .holly-summary .count.amber { color: var(--amber); }
+        .holly-summary .count.red { color: var(--red); }
 
-  .fade-in {
-    animation: fadeIn 0.4s ease forwards;
-  }
+        /* Expand row */
+        .expand-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 0 4px;
+            transition: transform 0.2s;
+        }
 
-  tbody tr { animation: fadeIn 0.3s ease forwards; opacity: 0; }
-</style>
+        .expand-btn.open { transform: rotate(90deg); }
+
+        .detail-row td {
+            padding: 0 14px 12px 42px;
+            background: #fafbfc;
+        }
+
+        .detail-row table {
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .detail-row table td {
+            padding: 4px 10px;
+            background: transparent;
+        }
+
+        .detail-row table th {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            font-weight: 600;
+            padding: 4px 10px;
+            background: transparent;
+            cursor: default;
+        }
+
+        /* No data message */
+        .no-data {
+            text-align: center;
+            padding: 48px;
+            color: var(--text-secondary);
+        }
+
+        .no-data h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 48px;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .search-box { margin-left: 0; width: 100%; }
+            .search-box input { width: 100%; }
+            table { font-size: 12px; }
+            td, thead th { padding: 8px 10px; }
+            .holly-locations { gap: 3px; }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <img src="https://corporate.healthevolves.com/wp-content/uploads/2024/11/evolve-logo-square-e-150x150.png" alt="Evolve Health">
+            <h1>Provider Availability Dashboard</h1>
+            <div class="scan-info">
+                <span id="zocdoc-scan-time"></span>
+                <span id="holly-scan-time"></span>
+            </div>
+        </div>
+    </header>
 
-<header class="header">
-  <div class="header-inner">
-    <div class="logo-group">
-      <img src="https://corporate.healthevolves.com/wp-content/uploads/2024/11/evolve-logo-square-e-150x150.png" alt="Evolve Health" style="height: 36px; width: 36px; border-radius: 4px;">
-      <div class="logo-text">Evolve Health <span>Provider Availability</span></div>
+    <div class="container">
+        <div class="stats-row" id="stats-row"></div>
+
+        <div class="toolbar">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="all-good">All Good</button>
+            <button class="filter-btn" data-filter="has-gaps">Has Gaps</button>
+            <button class="filter-btn" data-filter="no-availability">No Availability</button>
+            <button class="filter-btn" data-filter="errors">Errors</button>
+            <div class="search-box">
+                <input type="text" id="search" placeholder="Search providers...">
+            </div>
+        </div>
+
+        <div class="source-tabs">
+            <div class="source-tab active" data-view="unified">Unified</div>
+            <div class="source-tab" data-view="zocdoc">Zocdoc Only</div>
+            <div class="source-tab" data-view="holly">Holly Only</div>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead id="table-head"></thead>
+                <tbody id="table-body">
+                    <tr><td colspan="6" class="loading">Loading data...</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="header-meta">
-      <div id="last-updated"></div>
-      <button class="refresh-btn" onclick="loadData()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-        Refresh
-      </button>
-    </div>
-  </div>
-</header>
 
-<main class="main">
-  <div class="stats-row fade-in">
-    <div class="stat-card">
-      <div class="stat-label">Total Providers</div>
-      <div class="stat-value" id="stat-total">—</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Available</div>
-      <div class="stat-value available" id="stat-available">—</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">No Availability</div>
-      <div class="stat-value unavailable" id="stat-unavailable">—</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Errors</div>
-      <div class="stat-value error" id="stat-errors">—</div>
-    </div>
-  </div>
+    <script>
+    (function() {
+        // --- State ---
+        let zocdocData = null;
+        let hollyData = null;
+        let mergedDoctors = [];
+        let currentFilter = 'all';
+        let currentSearch = '';
+        let currentView = 'unified';
+        let sortCol = 'status';
+        let sortAsc = true;
 
-  <div class="controls-bar fade-in">
-    <div class="filter-group">
-      <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">All</button>
-      <button class="filter-btn" data-filter="available" onclick="setFilter('available', this)">Available</button>
-      <button class="filter-btn" data-filter="unavailable" onclick="setFilter('unavailable', this)">No Availability</button>
-      <button class="filter-btn" data-filter="error" onclick="setFilter('error', this)">Errors</button>
-    </div>
-    <input type="text" class="search-input" placeholder="Search providers..." oninput="searchDoctors(this.value)">
-  </div>
+        // --- Data Loading ---
+        async function loadData() {
+            const [zRes, hRes] = await Promise.allSettled([
+                fetch('data/availability.json').then(r => r.ok ? r.json() : null),
+                fetch('data/holly_availability.json').then(r => r.ok ? r.json() : null)
+            ]);
 
-  <div class="table-wrap fade-in">
-    <table>
-      <thead>
-        <tr>
-          <th>Provider</th>
-          <th>Status</th>
-          <th>Open Slots</th>
-          <th>Next Available</th>
-        </tr>
-      </thead>
-      <tbody id="table-body">
-        <tr><td colspan="4"><div class="loading-state"><div class="spinner"></div>Loading availability data...</div></td></tr>
-      </tbody>
-    </table>
-  </div>
+            zocdocData = zRes.status === 'fulfilled' ? zRes.value : null;
+            hollyData = hRes.status === 'fulfilled' ? hRes.value : null;
 
-  <div class="footer" id="footer"></div>
-</main>
+            if (!zocdocData && !hollyData) {
+                document.getElementById('table-body').innerHTML =
+                    '<tr><td colspan="6" class="no-data"><h3>No Data</h3>Run the Zocdoc or Holly checker to populate the dashboard.</td></tr>';
+                return;
+            }
 
-<script>
-let allData = [];
-let currentFilter = 'all';
-let searchQuery = '';
+            updateScanTimes();
+            mergedDoctors = mergeDoctors();
+            render();
+        }
 
-async function loadData() {
-  const btn = document.querySelector('.refresh-btn');
-  btn.classList.add('loading');
+        function updateScanTimes() {
+            const zEl = document.getElementById('zocdoc-scan-time');
+            const hEl = document.getElementById('holly-scan-time');
+            if (zocdocData && zocdocData.scan_date) {
+                const d = new Date(zocdocData.scan_date);
+                zEl.textContent = 'Zocdoc: ' + formatDateTime(d);
+            }
+            if (hollyData && hollyData.scan_date) {
+                const d = new Date(hollyData.scan_date);
+                hEl.textContent = 'Holly: ' + formatDateTime(d);
+            }
+        }
 
-  try {
-    const resp = await fetch('./data/availability.json?' + Date.now());
-    const json = await resp.json();
+        function formatDateTime(d) {
+            return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) +
+                ' ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        }
 
-    allData = json.doctors || json;
-    const meta = json.meta || {};
+        // --- Name Normalization ---
+        function normalizeName(name) {
+            let n = name.toLowerCase().trim();
+            ['dr. ', 'dr ', 'doctor '].forEach(p => { if (n.startsWith(p)) n = n.slice(p.length); });
+            [', dpm', ', md', ', do', ', pt', ', dpt', ', pa-c', ', pa', ', arnp', ', np',
+             ' dpm', ' md', ' do', ' pt', ' dpt', ' pa-c', ' pa', ' arnp', ' np'].forEach(s => {
+                if (n.endsWith(s)) n = n.slice(0, -s.length);
+            });
+            return n.trim();
+        }
 
-    // Update stats
-    const available = allData.filter(d => d.has_availability).length;
-    const errors = allData.filter(d => d.error).length;
-    const unavailable = allData.length - available - errors;
+        // --- Merge Logic ---
+        function mergeDoctors() {
+            const byNorm = {};
 
-    document.getElementById('stat-total').textContent = allData.length;
-    document.getElementById('stat-available').textContent = available;
-    document.getElementById('stat-unavailable').textContent = unavailable;
-    document.getElementById('stat-errors').textContent = errors;
+            // Process Zocdoc data
+            if (zocdocData) {
+                const providers = zocdocData.results || zocdocData.providers || zocdocData.data || [];
+                providers.forEach(p => {
+                    const name = p.name || p.provider || p.doctor || '';
+                    const norm = normalizeName(name);
+                    if (!norm) return;
+                    if (!byNorm[norm]) byNorm[norm] = { name: name, zocdoc: null, holly: null };
+                    byNorm[norm].zocdoc = {
+                        name: name,
+                        url: p.url || p.zocdoc_url || p.link || '',
+                        status: p.status || (p.open_slots > 0 ? 'available' : (p.error ? 'error' : 'no_availability')),
+                        open_slots: p.open_slots != null ? p.open_slots : p.slots,
+                        next_available: p.next_available || p.nextAvailable || null,
+                        error: p.error || null
+                    };
+                });
+            }
 
-    if (meta.generated) {
-      const date = new Date(meta.generated);
-      document.getElementById('last-updated').textContent = 'Updated ' + date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
-    }
+            // Process Holly data
+            if (hollyData && hollyData.doctors) {
+                hollyData.doctors.forEach(doc => {
+                    const norm = normalizeName(doc.name);
+                    if (!norm) return;
 
-    renderTable();
-  } catch (err) {
-    document.getElementById('table-body').innerHTML = '<tr><td colspan="4"><div class="empty-state">Unable to load data. Run the availability checker to generate data.</div></td></tr>';
-  } finally {
-    btn.classList.remove('loading');
-  }
-}
+                    // Try exact match first, then fuzzy by last name + first initial
+                    let matchKey = norm;
+                    if (!byNorm[matchKey]) {
+                        const parts = norm.split(' ');
+                        const last = parts[parts.length - 1];
+                        const firstInit = parts[0] ? parts[0][0] : '';
+                        for (const key of Object.keys(byNorm)) {
+                            const kParts = key.split(' ');
+                            const kLast = kParts[kParts.length - 1];
+                            const kFirst = kParts[0] ? kParts[0][0] : '';
+                            if (last === kLast && firstInit === kFirst) {
+                                matchKey = key;
+                                break;
+                            }
+                        }
+                    }
 
-function renderTable() {
-  const tbody = document.getElementById('table-body');
-  let filtered = allData;
+                    if (!byNorm[matchKey]) byNorm[matchKey] = { name: doc.name, zocdoc: null, holly: null };
+                    // Prefer longer/more formal name
+                    if (doc.name.length > byNorm[matchKey].name.length) byNorm[matchKey].name = doc.name;
 
-  if (currentFilter === 'available') filtered = allData.filter(d => d.has_availability);
-  else if (currentFilter === 'unavailable') filtered = allData.filter(d => !d.has_availability && !d.error);
-  else if (currentFilter === 'error') filtered = allData.filter(d => d.error);
+                    byNorm[matchKey].holly = {
+                        name: doc.name,
+                        overall_status: doc.overall_status,
+                        total_locations: doc.total_locations,
+                        locations_with_availability: doc.locations_with_availability,
+                        next_available: doc.next_available,
+                        locations: doc.locations || []
+                    };
+                });
+            }
 
-  if (searchQuery) {
-    const q = searchQuery.toLowerCase();
-    filtered = filtered.filter(d => d.name.toLowerCase().includes(q));
-  }
+            // Build merged list
+            return Object.values(byNorm).map(d => {
+                // Compute overall status
+                let overall = 'available';
+                let issues = [];
 
-  if (filtered.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="4"><div class="empty-state">No providers match this filter.</div></td></tr>';
-    return;
-  }
+                if (d.zocdoc) {
+                    if (d.zocdoc.status === 'error') {
+                        issues.push('zocdoc-error');
+                    } else if (d.zocdoc.status === 'no_availability') {
+                        issues.push('zocdoc-none');
+                    }
+                }
 
-  // Sort: available first, then unavailable, then errors
-  filtered.sort((a, b) => {
-    if (a.has_availability && !b.has_availability) return -1;
-    if (!a.has_availability && b.has_availability) return 1;
-    if (a.error && !b.error) return 1;
-    if (!a.error && b.error) return -1;
-    return a.name.localeCompare(b.name);
-  });
+                if (d.holly) {
+                    if (d.holly.overall_status === 'no_availability') {
+                        issues.push('holly-none');
+                    } else if (d.holly.overall_status === 'partial') {
+                        issues.push('holly-partial');
+                    }
+                }
 
-  tbody.innerHTML = filtered.map((doc, i) => {
-    let statusClass, statusLabel;
-    if (doc.error) {
-      statusClass = 'error';
-      statusLabel = 'Error';
-    } else if (doc.has_availability) {
-      statusClass = 'available';
-      statusLabel = 'Available';
-    } else {
-      statusClass = 'unavailable';
-      statusLabel = 'No Slots';
-    }
+                if (issues.some(i => i.includes('error'))) {
+                    overall = 'error';
+                } else if (issues.some(i => i.includes('none')) && issues.length === countSources(d)) {
+                    overall = 'no_availability';
+                } else if (issues.length > 0) {
+                    overall = 'has_gaps';
+                }
 
-    let nextDate = '—';
-    if (doc.next_availability) {
-      const dates = Object.values(doc.next_availability);
-      if (dates.length > 0) {
-        const d = new Date(dates[0]);
-        nextDate = '<strong>' + d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) + '</strong> at ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-      }
-    }
+                // Next available across all sources
+                const nexts = [];
+                if (d.zocdoc && d.zocdoc.next_available) nexts.push(d.zocdoc.next_available);
+                if (d.holly && d.holly.next_available) nexts.push(d.holly.next_available);
+                nexts.sort();
 
-    const zocdocUrl = doc.url || '#';
+                return {
+                    name: d.name,
+                    overall: overall,
+                    zocdoc: d.zocdoc,
+                    holly: d.holly,
+                    next_available: nexts[0] || null,
+                    issues: issues
+                };
+            });
+        }
 
-    return `<tr style="animation-delay: ${i * 0.03}s">
-      <td class="doctor-name"><a href="${zocdocUrl}" target="_blank" rel="noopener">${doc.name}</a></td>
-      <td><span class="status-badge ${statusClass}"><span class="status-dot"></span>${statusLabel}</span></td>
-      <td class="slot-count">${doc.error ? '—' : (doc.total_slots || 0)}</td>
-      <td class="next-date">${doc.error ? doc.error : nextDate}</td>
-    </tr>`;
-  }).join('');
-}
+        function countSources(d) {
+            return (d.zocdoc ? 1 : 0) + (d.holly ? 1 : 0);
+        }
 
-function setFilter(filter, btn) {
-  currentFilter = filter;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderTable();
-}
+        // --- Rendering ---
+        function render() {
+            renderStats();
+            renderTable();
+        }
 
-function searchDoctors(query) {
-  searchQuery = query;
-  renderTable();
-}
+        function renderStats() {
+            const total = mergedDoctors.length;
+            const allGood = mergedDoctors.filter(d => d.overall === 'available').length;
+            const gaps = mergedDoctors.filter(d => d.overall === 'has_gaps').length;
+            const none = mergedDoctors.filter(d => d.overall === 'no_availability').length;
+            const errs = mergedDoctors.filter(d => d.overall === 'error').length;
 
-loadData();
-</script>
+            document.getElementById('stats-row').innerHTML = `
+                <div class="stat-card"><div class="label">Total Providers</div><div class="value blue">${total}</div></div>
+                <div class="stat-card"><div class="label">All Good</div><div class="value green">${allGood}</div></div>
+                <div class="stat-card"><div class="label">Has Gaps</div><div class="value amber">${gaps}</div></div>
+                <div class="stat-card"><div class="label">No Availability</div><div class="value red">${none}</div></div>
+                ${errs > 0 ? `<div class="stat-card"><div class="label">Errors</div><div class="value amber">${errs}</div></div>` : ''}
+            `;
+        }
 
+        function renderTable() {
+            const thead = document.getElementById('table-head');
+            const tbody = document.getElementById('table-body');
+
+            // Filter
+            let docs = mergedDoctors.filter(d => {
+                if (currentFilter === 'all-good') return d.overall === 'available';
+                if (currentFilter === 'has-gaps') return d.overall === 'has_gaps';
+                if (currentFilter === 'no-availability') return d.overall === 'no_availability';
+                if (currentFilter === 'errors') return d.overall === 'error';
+                return true;
+            });
+
+            // Search
+            if (currentSearch) {
+                const q = currentSearch.toLowerCase();
+                docs = docs.filter(d => {
+                    if (d.name.toLowerCase().includes(q)) return true;
+                    if (d.holly && d.holly.locations) {
+                        return d.holly.locations.some(l =>
+                            l.office_name.toLowerCase().includes(q) ||
+                            l.address?.toLowerCase().includes(q)
+                        );
+                    }
+                    return false;
+                });
+            }
+
+            // Sort
+            docs.sort((a, b) => {
+                const statusOrder = { error: 0, no_availability: 1, has_gaps: 2, available: 3 };
+                let va, vb;
+                if (sortCol === 'name') {
+                    va = a.name.toLowerCase(); vb = b.name.toLowerCase();
+                    return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
+                } else if (sortCol === 'status') {
+                    va = statusOrder[a.overall] ?? 9; vb = statusOrder[b.overall] ?? 9;
+                } else if (sortCol === 'zocdoc') {
+                    va = a.zocdoc ? (a.zocdoc.open_slots ?? -1) : -2;
+                    vb = b.zocdoc ? (b.zocdoc.open_slots ?? -1) : -2;
+                } else if (sortCol === 'holly') {
+                    va = a.holly ? a.holly.locations_with_availability : -1;
+                    vb = b.holly ? b.holly.locations_with_availability : -1;
+                } else if (sortCol === 'next') {
+                    va = a.next_available || 'zzzz'; vb = b.next_available || 'zzzz';
+                    return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
+                }
+                return sortAsc ? va - vb : vb - va;
+            });
+
+            // Render based on view
+            if (currentView === 'unified') {
+                renderUnifiedView(thead, tbody, docs);
+            } else if (currentView === 'zocdoc') {
+                renderZocdocView(thead, tbody, docs);
+            } else {
+                renderHollyView(thead, tbody, docs);
+            }
+        }
+
+        function sortArrow(col) {
+            const active = sortCol === col;
+            const arrow = active ? (sortAsc ? '▲' : '▼') : '▲';
+            return `<span class="sort-arrow">${arrow}</span>`;
+        }
+
+        function renderUnifiedView(thead, tbody, docs) {
+            thead.innerHTML = `<tr>
+                <th style="width:30px"></th>
+                <th onclick="window._sort('name')" ${sortCol==='name'?'class="sorted"':''}>Provider ${sortArrow('name')}</th>
+                <th onclick="window._sort('status')" ${sortCol==='status'?'class="sorted"':''}>Status ${sortArrow('status')}</th>
+                <th onclick="window._sort('zocdoc')" ${sortCol==='zocdoc'?'class="sorted"':''}>Zocdoc ${sortArrow('zocdoc')}</th>
+                <th onclick="window._sort('holly')" ${sortCol==='holly'?'class="sorted"':''}>Holly ${sortArrow('holly')}</th>
+                <th onclick="window._sort('next')" ${sortCol==='next'?'class="sorted"':''}>Next Available ${sortArrow('next')}</th>
+            </tr>`;
+
+            if (docs.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="no-data">No providers match your filters.</td></tr>';
+                return;
+            }
+
+            let html = '';
+            docs.forEach((d, i) => {
+                const rowClass = d.overall === 'has_gaps' || d.overall === 'no_availability' ? 'has-gap' : '';
+                const hasHolly = d.holly && d.holly.locations && d.holly.locations.length > 0;
+
+                html += `<tr class="${rowClass}" data-idx="${i}">
+                    <td>${hasHolly ? `<button class="expand-btn" onclick="window._toggle(${i})">▶</button>` : ''}</td>
+                    <td class="provider-name">${d.name}</td>
+                    <td>${overallBadge(d.overall)}</td>
+                    <td>${zocdocCell(d.zocdoc)}</td>
+                    <td>${hollySummaryCell(d.holly)}</td>
+                    <td>${d.next_available ? formatDate(d.next_available) : '<span style="color:#aaa">—</span>'}</td>
+                </tr>`;
+
+                // Expandable Holly detail row (hidden by default)
+                if (hasHolly) {
+                    html += `<tr class="detail-row" id="detail-${i}" style="display:none">
+                        <td colspan="6">
+                            <table>
+                                <tr><th>Location</th><th>Status</th><th>New Patient</th><th>Return Patient</th><th>Next Available</th><th>Book</th></tr>
+                                ${d.holly.locations.map(l => `<tr>
+                                    <td><strong>${l.office_name}</strong></td>
+                                    <td>${l.has_any_availability ? '<span class="badge available">Available</span>' : '<span class="badge no-availability">None</span>'}</td>
+                                    <td>${l.new_patient_dates && l.new_patient_dates.length ? l.new_patient_dates.slice(0,3).map(formatDate).join(', ') : '—'}</td>
+                                    <td>${l.return_patient_dates && l.return_patient_dates.length ? l.return_patient_dates.slice(0,3).map(formatDate).join(', ') : '—'}</td>
+                                    <td>${l.next_available ? formatDate(l.next_available) : '—'}</td>
+                                    <td><a href="${l.booking_url}" target="_blank" class="zocdoc-link">Book →</a></td>
+                                </tr>`).join('')}
+                            </table>
+                        </td>
+                    </tr>`;
+                }
+            });
+
+            tbody.innerHTML = html;
+        }
+
+        function renderZocdocView(thead, tbody, docs) {
+            thead.innerHTML = `<tr>
+                <th onclick="window._sort('name')">Provider ${sortArrow('name')}</th>
+                <th onclick="window._sort('status')">Status ${sortArrow('status')}</th>
+                <th onclick="window._sort('zocdoc')">Open Slots ${sortArrow('zocdoc')}</th>
+                <th onclick="window._sort('next')">Next Available ${sortArrow('next')}</th>
+                <th>Link</th>
+            </tr>`;
+
+            const zDocs = docs.filter(d => d.zocdoc);
+            if (zDocs.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="no-data">No Zocdoc data available. Run the Zocdoc checker.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = zDocs.map(d => {
+                const z = d.zocdoc;
+                return `<tr class="${z.status !== 'available' ? 'has-gap' : ''}">
+                    <td class="provider-name"><a href="${z.url}" target="_blank">${z.name}</a></td>
+                    <td>${statusBadge(z.status)}</td>
+                    <td>${z.open_slots != null ? `<span class="slots ${z.open_slots > 0 ? 'green' : 'red'}">${z.open_slots}</span>` : '—'}</td>
+                    <td>${z.next_available ? formatDate(z.next_available) : '—'}</td>
+                    <td><a href="${z.url}" target="_blank" class="zocdoc-link">View →</a></td>
+                </tr>`;
+            }).join('');
+        }
+
+        function renderHollyView(thead, tbody, docs) {
+            thead.innerHTML = `<tr>
+                <th style="width:30px"></th>
+                <th onclick="window._sort('name')">Provider ${sortArrow('name')}</th>
+                <th onclick="window._sort('holly')">Locations ${sortArrow('holly')}</th>
+                <th onclick="window._sort('status')">Status ${sortArrow('status')}</th>
+                <th onclick="window._sort('next')">Next Available ${sortArrow('next')}</th>
+            </tr>`;
+
+            const hDocs = docs.filter(d => d.holly);
+            if (hDocs.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="no-data">No Holly data available. Run the Holly checker.</td></tr>';
+                return;
+            }
+
+            let html = '';
+            hDocs.forEach((d, i) => {
+                const h = d.holly;
+                const hasGap = h.overall_status !== 'available';
+
+                html += `<tr class="${hasGap ? 'has-gap' : ''}">
+                    <td><button class="expand-btn" onclick="window._toggleH(${i})">▶</button></td>
+                    <td class="provider-name">${d.name}</td>
+                    <td>${hollySummaryCell(h)}</td>
+                    <td>${overallBadge(h.overall_status === 'partial' ? 'has_gaps' : h.overall_status)}</td>
+                    <td>${h.next_available ? formatDate(h.next_available) : '—'}</td>
+                </tr>`;
+
+                html += `<tr class="detail-row" id="holly-detail-${i}" style="display:none">
+                    <td colspan="5">
+                        <table>
+                            <tr><th>Location</th><th>New Patient Dates</th><th>Return Patient Dates</th><th>Book</th></tr>
+                            ${h.locations.map(l => `<tr>
+                                <td>${l.has_any_availability ? '✅' : '❌'} <strong>${l.office_name}</strong></td>
+                                <td>${l.new_patient_dates && l.new_patient_dates.length ? l.new_patient_dates.slice(0,5).map(formatDate).join(', ') : '—'}</td>
+                                <td>${l.return_patient_dates && l.return_patient_dates.length ? l.return_patient_dates.slice(0,5).map(formatDate).join(', ') : '—'}</td>
+                                <td><a href="${l.booking_url}" target="_blank" class="zocdoc-link">Book →</a></td>
+                            </tr>`).join('')}
+                        </table>
+                    </td>
+                </tr>`;
+            });
+
+            tbody.innerHTML = html;
+        }
+
+        // --- Helper renderers ---
+        function overallBadge(status) {
+            const map = {
+                'available': '<span class="badge available">All Good</span>',
+                'has_gaps': '<span class="badge partial">Has Gaps</span>',
+                'no_availability': '<span class="badge no-availability">No Availability</span>',
+                'error': '<span class="badge error">Error</span>'
+            };
+            return map[status] || status;
+        }
+
+        function statusBadge(status) {
+            const map = {
+                'available': '<span class="badge available">Available</span>',
+                'no_availability': '<span class="badge no-availability">None</span>',
+                'error': '<span class="badge error">Error</span>'
+            };
+            return map[status] || status;
+        }
+
+        function zocdocCell(z) {
+            if (!z) return '<span class="badge not-listed">Not Listed</span>';
+            if (z.status === 'error') return '<span class="badge error">Error</span>';
+            if (z.status === 'no_availability') return '<span class="badge no-availability">No Slots</span>';
+            const slots = z.open_slots != null ? z.open_slots : '?';
+            return `<div class="zocdoc-info">
+                <span class="slots green">${slots}</span>
+                <span class="meta">slots</span>
+                ${z.url ? `<a href="${z.url}" target="_blank" class="zocdoc-link">View</a>` : ''}
+            </div>`;
+        }
+
+        function hollySummaryCell(h) {
+            if (!h) return '<span class="badge not-listed">Not Listed</span>';
+            const total = h.total_locations || 0;
+            const avail = h.locations_with_availability || 0;
+            const colorClass = avail === total ? 'green' : avail === 0 ? 'red' : 'amber';
+            let html = `<span class="holly-summary"><span class="count ${colorClass}">${avail}/${total}</span> locations</span>`;
+
+            // Show compact location pills
+            if (h.locations && h.locations.length <= 4) {
+                html += '<div class="holly-locations" style="margin-top:3px">';
+                h.locations.forEach(l => {
+                    const cls = l.has_any_availability ? 'ok' : 'none';
+                    html += `<span class="loc-pill ${cls}">${l.office_name}</span>`;
+                });
+                html += '</div>';
+            }
+            return html;
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '—';
+            const d = new Date(dateStr + 'T00:00:00');
+            return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+
+        // --- Event Handlers ---
+        window._sort = function(col) {
+            if (sortCol === col) sortAsc = !sortAsc;
+            else { sortCol = col; sortAsc = col === 'name' || col === 'next'; }
+            renderTable();
+        };
+
+        window._toggle = function(idx) {
+            const row = document.getElementById('detail-' + idx);
+            const btn = row.previousElementSibling.querySelector('.expand-btn');
+            if (row.style.display === 'none') {
+                row.style.display = '';
+                btn.classList.add('open');
+            } else {
+                row.style.display = 'none';
+                btn.classList.remove('open');
+            }
+        };
+
+        window._toggleH = function(idx) {
+            const row = document.getElementById('holly-detail-' + idx);
+            const btn = row.previousElementSibling.querySelector('.expand-btn');
+            if (row.style.display === 'none') {
+                row.style.display = '';
+                btn.classList.add('open');
+            } else {
+                row.style.display = 'none';
+                btn.classList.remove('open');
+            }
+        };
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderTable();
+            });
+        });
+
+        // Search
+        document.getElementById('search').addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            renderTable();
+        });
+
+        // Source tabs
+        document.querySelectorAll('.source-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.source-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentView = tab.dataset.view;
+                renderTable();
+            });
+        });
+
+        // --- Init ---
+        loadData();
+    })();
+    </script>
 </body>
 </html>
-<-l updated -->
