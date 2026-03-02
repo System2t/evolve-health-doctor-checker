@@ -825,14 +825,13 @@
                 <th style="width:30px"></th>
                 <th onclick="window._sort('name')">Provider ${sortArrow('name')}</th>
                 <th onclick="window._sort('status')">Status ${sortArrow('status')}</th>
-                <th onclick="window._sort('zocdoc')">Open Slots ${sortArrow('zocdoc')}</th>
                 <th onclick="window._sort('next')">Next Available ${sortArrow('next')}</th>
                 <th>Link</th>
             </tr>`;
 
             const zDocs = docs;
             if (zDocs.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" class="no-data">No Zocdoc data available. Run the Zocdoc checker.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" class="no-data">No Zocdoc data available. Run the Zocdoc checker.</td></tr>';
                 return;
             }
 
@@ -858,7 +857,6 @@
                     <td>${hasLocs ? `<button class="expand-btn" onclick="window._toggleZ(${i})">▶</button>` : ''}</td>
                     <td class="provider-name"><a href="${z.url}" target="_blank">${z.name}</a>${locSummary}</td>
                     <td>${statusBadge(z.status === 'partial' ? 'has_gaps' : z.status)}</td>
-                    <td>${z.open_slots != null ? `<span class="slots ${z.open_slots > 0 ? 'green' : 'red'}">${z.open_slots}</span>` : '—'}</td>
                     <td>${z.next_available ? formatDate(z.next_available) : '—'}</td>
                     <td><a href="${z.url}" target="_blank" class="zocdoc-link">View →</a></td>
                 </tr>`;
@@ -866,16 +864,15 @@
                 // Expandable location detail row
                 if (hasLocs) {
                     html += `<tr class="detail-row" id="zocdoc-detail-${i}" style="display:none">
-                        <td colspan="6">
+                        <td colspan="5">
                             <table>
-                                <tr><th>Location</th><th>Address</th><th>Slots</th><th>Next Available</th></tr>
+                                <tr><th>Location</th><th>Address</th><th>Next Available</th></tr>
                                 ${z.locations.map(l => {
                                     const label = l.city ? `${l.city}, ${l.state}` : (l.phone || l.location_id.slice(0, 15));
                                     const addr = l.address || '';
                                     return `<tr>
                                         <td>${l.has_availability ? '✅' : '❌'} <strong>${label}</strong></td>
                                         <td>${addr}</td>
-                                        <td><span class="slots ${l.slots > 0 ? 'green' : 'red'}">${l.slots}</span></td>
                                         <td>${l.next_available ? formatDate(l.next_available) : '—'}</td>
                                     </tr>`;
                                 }).join('')}
@@ -931,11 +928,10 @@
                 html += `<tr class="detail-row" id="holly-detail-${i}" style="display:none">
                     <td colspan="5">
                         <table>
-                            <tr><th>Location</th><th>New Patient Dates</th><th>Return Patient Dates</th><th>Book</th></tr>
+                            <tr><th>Location</th><th>Next Available</th><th>Book</th></tr>
                             ${h.locations.map(l => `<tr>
                                 <td>${l.has_any_availability ? '✅' : '❌'} <strong>${l.office_name}</strong></td>
-                                <td>${l.new_patient_dates && l.new_patient_dates.length ? l.new_patient_dates.slice(0,5).map(formatDate).join(', ') : '—'}</td>
-                                <td>${l.return_patient_dates && l.return_patient_dates.length ? l.return_patient_dates.slice(0,5).map(formatDate).join(', ') : '—'}</td>
+                                <td>${l.next_available ? formatDate(l.next_available) : '—'}</td>
                                 <td><a href="${l.booking_url}" target="_blank" class="zocdoc-link">Book →</a></td>
                             </tr>`).join('')}
                         </table>
