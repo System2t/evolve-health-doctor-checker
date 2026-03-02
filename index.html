@@ -550,8 +550,19 @@
                         status: status,
                         open_slots: p.total_slots != null ? p.total_slots : null,
                         next_available: nextAvail,
-                        error: p.error || null
+                        error: p.error || null,
+                        locations: p.locations || [],
+                        locations_total: p.locations_total || 0,
+                        locations_available: p.locations_available || 0,
                     };
+
+                    // Upgrade status to 'partial' if some locations have gaps
+                    if (!p.error && p.locations && p.locations.length > 1) {
+                        const availLocs = p.locations.filter(l => l.has_availability).length;
+                        if (availLocs > 0 && availLocs < p.locations.length) {
+                            byNorm[norm].zocdoc.status = 'partial';
+                        }
+                    }
                 });
             }
 
@@ -677,6 +688,7 @@
         function getViewStatus(d) {
             if (currentView === 'zocdoc') {
                 if (!d.zocdoc) return 'not_listed';
+                if (d.zocdoc.status === 'partial') return 'has_gaps';
                 return d.zocdoc.status; // 'available', 'no_availability', 'error'
             } else {
                 if (!d.holly) return 'not_listed';
@@ -808,29 +820,65 @@
 
         function renderZocdocView(thead, tbody, docs) {
             thead.innerHTML = `<tr>
+                <th style="width:30px"></th>
                 <th onclick="window._sort('name')">Provider ${sortArrow('name')}</th>
                 <th onclick="window._sort('status')">Status ${sortArrow('status')}</th>
-                <th onclick="window._sort('zocdoc')">Open Slots ${sortArrow('zocdoc')}</th>
+                <th onclick="window._sort('zocdoc')">Locations / Slots ${sortArrow('zocdoc')}</th>
                 <th onclick="window._sort('next')">Next Available ${sortArrow('next')}</th>
                 <th>Link</th>
             </tr>`;
 
             const zDocs = docs;
             if (zDocs.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" class="no-data">No Zocdoc data available. Run the Zocdoc checker.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" class="no-data">No Zocdoc data available. Run the Zocdoc checker.</td></tr>';
                 return;
             }
 
-            tbody.innerHTML = zDocs.map(d => {
+            let html = '';
+            zDocs.forEach((d, i) => {
                 const z = d.zocdoc;
-                return `<tr class="${z.status !== 'available' ? 'has-gap' : ''}">
+                const hasLocs = z.locations && z.locations.length > 1;
+                const statusClass = z.status !== 'available' ? 'has-gap' : '';
+
+                // Location summary
+                let locSummary = '';
+                if (hasLocs) {
+                    const colorClass = z.locations_available === z.locations_total ? 'green'
+                        : z.locations_available === 0 ? 'red' : 'amber';
+                    locSummary = `<span class="holly-summary"><span class="count ${colorClass}">${z.locations_available}/${z.locations_total}</span> locations, </span>`;
+                }
+                const slotColor = z.open_slots > 0 ? 'green' : 'red';
+
+                html += `<tr class="${statusClass}">
+                    <td>${hasLocs ? `<button class="expand-btn" onclick="window._toggleZ(${i})">▶</button>` : ''}</td>
                     <td class="provider-name"><a href="${z.url}" target="_blank">${z.name}</a></td>
-                    <td>${statusBadge(z.status)}</td>
-                    <td>${z.open_slots != null ? `<span class="slots ${z.open_slots > 0 ? 'green' : 'red'}">${z.open_slots}</span>` : '—'}</td>
+                    <td>${statusBadge(z.status === 'partial' ? 'partial' : z.status)}</td>
+                    <td>${locSummary}<span class="slots ${slotColor}">${z.open_slots != null ? z.open_slots : '?'}</span> <span style="font-size:11px;color:var(--text-secondary)">slots</span></td>
                     <td>${z.next_available ? formatDate(z.next_available) : '—'}</td>
                     <td><a href="${z.url}" target="_blank" class="zocdoc-link">View →</a></td>
                 </tr>`;
-            }).join('');
+
+                // Expandable location detail row
+                if (hasLocs) {
+                    html += `<tr class="detail-row" id="zocdoc-detail-${i}" style="display:none">
+                        <td colspan="6">
+                            <table>
+                                <tr><th>Location</th><th>Phone</th><th>State</th><th>Slots</th><th>Next Available</th><th>Status</th></tr>
+                                ${z.locations.map(l => `<tr>
+                                    <td>${l.has_availability ? '✅' : '❌'} <strong>${l.location_id.substring(0,15)}…</strong></td>
+                                    <td>${l.phone || '—'}</td>
+                                    <td>${l.state || '—'}</td>
+                                    <td><span class="slots ${l.slots > 0 ? 'green' : 'red'}">${l.slots}</span></td>
+                                    <td>${l.next_available ? formatDate(l.next_available) : '—'}</td>
+                                    <td>${l.has_availability ? '<span class="badge available">Available</span>' : '<span class="badge no-availability">None</span>'}</td>
+                                </tr>`).join('')}
+                            </table>
+                        </td>
+                    </tr>`;
+                }
+            });
+
+            tbody.innerHTML = html;
         }
 
         function renderHollyView(thead, tbody, docs) {
@@ -893,6 +941,7 @@
         function statusBadge(status) {
             const map = {
                 'available': '<span class="badge available">Available</span>',
+                'partial': '<span class="badge partial">Partial</span>',
                 'no_availability': '<span class="badge no-availability">None</span>',
                 'error': '<span class="badge error">Error</span>'
             };
@@ -957,6 +1006,18 @@
 
         window._toggleH = function(idx) {
             const row = document.getElementById('holly-detail-' + idx);
+            const btn = row.previousElementSibling.querySelector('.expand-btn');
+            if (row.style.display === 'none') {
+                row.style.display = '';
+                btn.classList.add('open');
+            } else {
+                row.style.display = 'none';
+                btn.classList.remove('open');
+            }
+        };
+
+        window._toggleZ = function(idx) {
+            const row = document.getElementById('zocdoc-detail-' + idx);
             const btn = row.previousElementSibling.querySelector('.expand-btn');
             if (row.style.display === 'none') {
                 row.style.display = '';
