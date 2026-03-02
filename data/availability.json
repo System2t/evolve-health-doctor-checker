@@ -129,31 +129,6 @@
     },
     {
       "next_availability": {
-        "lo_gGpseDVPukm4_8HZr17icx": null
-      },
-      "total_slots": 0,
-      "slots": [],
-      "has_availability": false,
-      "locations": [
-        {
-          "location_id": "lo_gGpseDVPukm4_8HZr17icx",
-          "city": "North Miami Beach",
-          "state": "FL",
-          "address": "1 NE 167th St",
-          "zip": "33162",
-          "phone": "(305) 432-9565",
-          "slots": 0,
-          "next_available": null,
-          "has_availability": false
-        }
-      ],
-      "locations_total": 1,
-      "locations_available": 0,
-      "name": "Pooneh Alaei",
-      "url": "https://www.zocdoc.com/doctor/pooneh-alaei-taleghani-dpm-609441"
-    },
-    {
-      "next_availability": {
         "lo_Zi9C6niHnEmB9TL8krAEFx": "2026-03-02T10:00:00-05:00",
         "lo_wwqKU5z3ykGs3xGk7aTl4B": null
       },
