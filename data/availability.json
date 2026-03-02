@@ -1,7 +1,7 @@
 {
-  "scan_date": "2026-03-01T19:34:42.861659",
+  "scan_date": "2026-03-01T19:49:57.440025",
   "meta": {
-    "generated": "2026-03-01T19:34:42.861662",
+    "generated": "2026-03-01T19:49:57.440027",
     "total": 46,
     "available": 42,
     "unavailable": 4,
@@ -19,8 +19,11 @@
       "locations": [
         {
           "location_id": "lo_gGpseDVPukm4_8HZr17icx",
-          "phone": "(305) 432-9565",
+          "city": "North Miami Beach",
           "state": "FL",
+          "address": "1 NE 167th St",
+          "zip": "33162",
+          "phone": "(305) 432-9565",
           "slots": 0,
           "next_available": null,
           "has_availability": false
