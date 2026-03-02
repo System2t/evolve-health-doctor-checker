@@ -1,14 +1,132 @@
 {
-  "scan_date": "2026-03-01T19:49:57.440025",
+  "scan_date": "2026-03-01T19:54:47.871990",
   "meta": {
-    "generated": "2026-03-01T19:49:57.440027",
-    "total": 46,
-    "available": 42,
+    "generated": "2026-03-01T19:54:47.871993",
+    "total": 47,
+    "available": 43,
     "unavailable": 4,
     "errors": 0,
     "success_rate": "100.0%"
   },
   "doctors": [
+    {
+      "next_availability": {
+        "lo_6smt-UT5pkiNscQRjkflwh": "2026-03-02T10:00:00-05:00",
+        "lo_A1L-kRiOpUG4aD2bK3yKjR": "2026-03-03T10:30:00-05:00"
+      },
+      "total_slots": 68,
+      "slots": [
+        {
+          "date": "2026-03-02",
+          "time": "2026-03-02T10:00:00-05:00"
+        },
+        {
+          "date": "2026-03-02",
+          "time": "2026-03-02T11:00:00-05:00"
+        },
+        {
+          "date": "2026-03-02",
+          "time": "2026-03-02T11:30:00-05:00"
+        },
+        {
+          "date": "2026-03-02",
+          "time": "2026-03-02T13:00:00-05:00"
+        },
+        {
+          "date": "2026-03-02",
+          "time": "2026-03-02T14:00:00-05:00"
+        },
+        {
+          "date": "2026-03-02",
+          "time": "2026-03-02T14:30:00-05:00"
+        },
+        {
+          "date": "2026-03-02",
+          "time": "2026-03-02T15:00:00-05:00"
+        },
+        {
+          "date": "2026-03-05",
+          "time": "2026-03-05T09:30:00-05:00"
+        },
+        {
+          "date": "2026-03-05",
+          "time": "2026-03-05T10:30:00-05:00"
+        },
+        {
+          "date": "2026-03-05",
+          "time": "2026-03-05T11:30:00-05:00"
+        },
+        {
+          "date": "2026-03-05",
+          "time": "2026-03-05T13:30:00-05:00"
+        },
+        {
+          "date": "2026-03-05",
+          "time": "2026-03-05T14:00:00-05:00"
+        },
+        {
+          "date": "2026-03-05",
+          "time": "2026-03-05T14:30:00-05:00"
+        },
+        {
+          "date": "2026-03-05",
+          "time": "2026-03-05T15:00:00-05:00"
+        },
+        {
+          "date": "2026-03-09",
+          "time": "2026-03-09T08:00:00-04:00"
+        },
+        {
+          "date": "2026-03-09",
+          "time": "2026-03-09T08:30:00-04:00"
+        },
+        {
+          "date": "2026-03-09",
+          "time": "2026-03-09T09:30:00-04:00"
+        },
+        {
+          "date": "2026-03-09",
+          "time": "2026-03-09T10:00:00-04:00"
+        },
+        {
+          "date": "2026-03-09",
+          "time": "2026-03-09T10:30:00-04:00"
+        },
+        {
+          "date": "2026-03-09",
+          "time": "2026-03-09T11:30:00-04:00"
+        }
+      ],
+      "has_availability": true,
+      "locations": [
+        {
+          "location_id": "lo_6smt-UT5pkiNscQRjkflwh",
+          "city": "Orlando",
+          "state": "FL",
+          "address": "10016 Wellness Way, Unit 130",
+          "zip": "32832",
+          "phone": "(407) 650-0248",
+          "slots": 34,
+          "next_available": "2026-03-02",
+          "has_availability": true
+        },
+        {
+          "location_id": "lo_A1L-kRiOpUG4aD2bK3yKjR",
+          "city": "Kissimmee",
+          "state": "FL",
+          "address": "1508 Village Oak Ln",
+          "zip": "34746",
+          "phone": "(407) 518-7747",
+          "slots": 34,
+          "next_available": "2026-03-03",
+          "has_availability": true
+        }
+      ],
+      "locations_total": 2,
+      "locations_available": 2,
+      "name": "Pooneh Alaei",
+      "url": "https://www.zocdoc.com/doctor/pooneh-alaei-taleghani-dpm-673117"
+    },
     {
       "next_availability": {
         "lo_gGpseDVPukm4_8HZr17icx": null
