@@ -470,20 +470,15 @@
         let sortCol = 'status';
         let sortAsc = false;
 
-        // Phone → Office name mapping (loaded from data/phone_to_office.json)
-        let phoneToOffice = {};
-
         // --- Data Loading ---
         async function loadData() {
-            const [zRes, hRes, pRes] = await Promise.allSettled([
+            const [zRes, hRes] = await Promise.allSettled([
                 fetch('data/availability.json').then(r => r.ok ? r.json() : null),
-                fetch('data/holly_availability.json').then(r => r.ok ? r.json() : null),
-                fetch('data/phone_to_office.json').then(r => r.ok ? r.json() : {})
+                fetch('data/holly_availability.json').then(r => r.ok ? r.json() : null)
             ]);
 
             zocdocData = zRes.status === 'fulfilled' ? zRes.value : null;
             hollyData = hRes.status === 'fulfilled' ? hRes.value : null;
-            phoneToOffice = pRes.status === 'fulfilled' ? (pRes.value || {}) : {};
 
             if (!zocdocData && !hollyData) {
                 document.getElementById('table-body').innerHTML =
@@ -561,10 +556,10 @@
                         locations_available: p.locations_available || 0,
                     };
 
-                    // Upgrade status to 'partial' if some locations have gaps
+                    // Detect partial availability (some locations have slots, some don't)
                     if (!p.error && p.locations && p.locations.length > 1) {
-                        const availLocs = p.locations.filter(l => l.has_availability).length;
-                        if (availLocs > 0 && availLocs < p.locations.length) {
+                        const locAvail = p.locations.filter(l => l.has_availability).length;
+                        if (locAvail > 0 && locAvail < p.locations.length) {
                             byNorm[norm].zocdoc.status = 'partial';
                         }
                     }
@@ -620,6 +615,8 @@
                         issues.push('zocdoc-error');
                     } else if (d.zocdoc.status === 'no_availability') {
                         issues.push('zocdoc-none');
+                    } else if (d.zocdoc.status === 'partial') {
+                        issues.push('zocdoc-partial');
                     }
                 }
 
@@ -828,7 +825,7 @@
                 <th style="width:30px"></th>
                 <th onclick="window._sort('name')">Provider ${sortArrow('name')}</th>
                 <th onclick="window._sort('status')">Status ${sortArrow('status')}</th>
-                <th onclick="window._sort('zocdoc')">Locations / Slots ${sortArrow('zocdoc')}</th>
+                <th onclick="window._sort('zocdoc')">Open Slots ${sortArrow('zocdoc')}</th>
                 <th onclick="window._sort('next')">Next Available ${sortArrow('next')}</th>
                 <th>Link</th>
             </tr>`;
@@ -845,20 +842,23 @@
                 const hasLocs = z.locations && z.locations.length > 1;
                 const statusClass = z.status !== 'available' ? 'has-gap' : '';
 
-                // Location summary
+                // Location summary pills
                 let locSummary = '';
                 if (hasLocs) {
-                    const colorClass = z.locations_available === z.locations_total ? 'green'
-                        : z.locations_available === 0 ? 'red' : 'amber';
-                    locSummary = `<span class="holly-summary"><span class="count ${colorClass}">${z.locations_available}/${z.locations_total}</span> locations, </span>`;
+                    locSummary = '<div class="holly-locations" style="margin-top:3px">';
+                    z.locations.forEach(l => {
+                        const cls = l.has_availability ? 'ok' : 'none';
+                        const label = l.city || l.phone || l.location_id.slice(0, 12);
+                        locSummary += `<span class="loc-pill ${cls}">${label}</span>`;
+                    });
+                    locSummary += '</div>';
                 }
-                const slotColor = z.open_slots > 0 ? 'green' : 'red';
 
                 html += `<tr class="${statusClass}">
                     <td>${hasLocs ? `<button class="expand-btn" onclick="window._toggleZ(${i})">▶</button>` : ''}</td>
-                    <td class="provider-name"><a href="${z.url}" target="_blank">${z.name}</a></td>
-                    <td>${statusBadge(z.status === 'partial' ? 'partial' : z.status)}</td>
-                    <td>${locSummary}<span class="slots ${slotColor}">${z.open_slots != null ? z.open_slots : '?'}</span> <span style="font-size:11px;color:var(--text-secondary)">slots</span></td>
+                    <td class="provider-name"><a href="${z.url}" target="_blank">${z.name}</a>${locSummary}</td>
+                    <td>${statusBadge(z.status === 'partial' ? 'has_gaps' : z.status)}</td>
+                    <td>${z.open_slots != null ? `<span class="slots ${z.open_slots > 0 ? 'green' : 'red'}">${z.open_slots}</span>` : '—'}</td>
                     <td>${z.next_available ? formatDate(z.next_available) : '—'}</td>
                     <td><a href="${z.url}" target="_blank" class="zocdoc-link">View →</a></td>
                 </tr>`;
@@ -868,15 +868,16 @@
                     html += `<tr class="detail-row" id="zocdoc-detail-${i}" style="display:none">
                         <td colspan="6">
                             <table>
-                                <tr><th>Office</th><th>Slots</th><th>Next Available</th><th>Status</th></tr>
+                                <tr><th>Location</th><th>Address</th><th>Slots</th><th>Next Available</th></tr>
                                 ${z.locations.map(l => {
-                                    const officeName = phoneToOffice[l.phone] || l.phone || l.location_id.substring(0,18) + '…';
+                                    const label = l.city ? `${l.city}, ${l.state}` : (l.phone || l.location_id.slice(0, 15));
+                                    const addr = l.address || '';
                                     return `<tr>
-                                    <td>${l.has_availability ? '✅' : '❌'} <strong>${officeName}</strong></td>
-                                    <td><span class="slots ${l.slots > 0 ? 'green' : 'red'}">${l.slots}</span></td>
-                                    <td>${l.next_available ? formatDate(l.next_available) : '—'}</td>
-                                    <td>${l.has_availability ? '<span class="badge available">Available</span>' : '<span class="badge no-availability">None</span>'}</td>
-                                </tr>`;
+                                        <td>${l.has_availability ? '✅' : '❌'} <strong>${label}</strong></td>
+                                        <td>${addr}</td>
+                                        <td><span class="slots ${l.slots > 0 ? 'green' : 'red'}">${l.slots}</span></td>
+                                        <td>${l.next_available ? formatDate(l.next_available) : '—'}</td>
+                                    </tr>`;
                                 }).join('')}
                             </table>
                         </td>
@@ -886,6 +887,18 @@
 
             tbody.innerHTML = html;
         }
+
+        window._toggleZ = function(idx) {
+            const row = document.getElementById('zocdoc-detail-' + idx);
+            const btn = row.previousElementSibling.querySelector('.expand-btn');
+            if (row.style.display === 'none') {
+                row.style.display = '';
+                btn.classList.add('open');
+            } else {
+                row.style.display = 'none';
+                btn.classList.remove('open');
+            }
+        };
 
         function renderHollyView(thead, tbody, docs) {
             thead.innerHTML = `<tr>
@@ -947,7 +960,7 @@
         function statusBadge(status) {
             const map = {
                 'available': '<span class="badge available">Available</span>',
-                'partial': '<span class="badge partial">Partial</span>',
+                'has_gaps': '<span class="badge partial">Partial</span>',
                 'no_availability': '<span class="badge no-availability">None</span>',
                 'error': '<span class="badge error">Error</span>'
             };
@@ -1012,18 +1025,6 @@
 
         window._toggleH = function(idx) {
             const row = document.getElementById('holly-detail-' + idx);
-            const btn = row.previousElementSibling.querySelector('.expand-btn');
-            if (row.style.display === 'none') {
-                row.style.display = '';
-                btn.classList.add('open');
-            } else {
-                row.style.display = 'none';
-                btn.classList.remove('open');
-            }
-        };
-
-        window._toggleZ = function(idx) {
-            const row = document.getElementById('zocdoc-detail-' + idx);
             const btn = row.previousElementSibling.querySelector('.expand-btn');
             if (row.style.display === 'none') {
                 row.style.display = '';
